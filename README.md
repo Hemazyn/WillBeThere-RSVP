@@ -64,7 +64,7 @@ Set up the backend and database according to deployment instructions.
 Configure authentication providers.
 Run the frontend and backend locally for development.
 ## Contributors
-Emmanuel Tofunmi: [Github repository](https://github.com/Hemazyn)
-Andrew Ezeani: [Github repository](https://github.com/ezeaniiandrew)
+- Emmanuel Tofunmi: [Github repository](https://github.com/Hemazyn)
+- Andrew Ezeani: [Github repository](https://github.com/ezeaniiandrew)
 ## Acknowledgments
 Queen Arit: [Senior Software Engineer](https://twitter.com/AritDeveloper)
