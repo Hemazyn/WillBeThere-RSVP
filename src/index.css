@@ -2,9 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-
 .main {
   background: linear-gradient(180deg, #140E1A 31.5%, #634480 100%);
   width: 100%;
   height: 100svh;
+}
+
+
+@layer base {
+  html {
+    font-family: "Bayon";
+  }
 }
