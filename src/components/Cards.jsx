@@ -3,13 +3,17 @@ const imageUrl = `https://s3-alpha-sig.figma.com/img/699d/1183/8d9716e61a45f9e95
 export const EventCard = () => {
   return (
     <div className="flex flex-col w-[320px] h-[602px] justify-around items-center">
-      <div className="rounded-md">
-        <img className="w-full object-cover" src={imageUrl} alt="imageName.png" />
-      </div>
+      <img
+        className="w-full object-cover rounded-[10px]"
+        src={imageUrl}
+        alt="imageName.png"
+      />
       <div>
-        <h1 className="font-normal text-2xl/[43.36px]">Event Name Here</h1>
-        <h3 className="font-normal text-base/[28.91px]">Event Time and Location Here</h3>
+        <h1 className="font-normal text-2xl/[43.36px] text-white">Event Name Here</h1>
+        <h3 className="font-normal text-base/[28.91px] text-slate">
+          Event Time and Location Here
+        </h3>
       </div>
     </div>
-  )
+  );
 };

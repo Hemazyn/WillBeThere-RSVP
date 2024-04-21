@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import { Home, Browse } from './pages';
+import { Home, Browse, CreateEvent } from './pages';
 
 function App() {
   return (
@@ -7,6 +7,7 @@ function App() {
       <Route path="/" >
         <Route index element={<Home />} />
         <Route path="browse" element={<Browse />} />
+        <Route path="create" element={<CreateEvent />} />
       </Route>
     </Routes>
   )
