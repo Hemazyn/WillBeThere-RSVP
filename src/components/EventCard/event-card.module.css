@@ -1,28 +1,28 @@
 .card {
-  position: relative;
-  text-align: center;
-  border-radius: 4px;
+    position: relative;
+    text-align: center;
+    border-radius: 4px;
 
-  img {
-    border-radius: inherit;
-    max-width: 100%;
-  }
+    img {
+        border-radius: inherit;
+        max-width: 100%;
+    }
 }
 
 .details {
-  position: absolute;
-  left: 50%;
-  bottom: 20px;
-  transform: translateX(-50%);
+    position: absolute;
+    left: 50%;
+    bottom: 20px;
+    transform: translateX(-50%);
 
-  h2 {
-    font-size: calc(24 / 16 * 1rem);
-  }
+    h2 {
+        font-size: calc(24 / 16 * 1rem);
+    }
 }
 
 .bookmark {
-  position: absolute;
-  top: 10px;
-  right: 10px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
     font-size: 1.2rem;
 }
