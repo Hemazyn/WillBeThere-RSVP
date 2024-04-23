@@ -1,8 +1,6 @@
-
-
-function Button({children, ...props}) {
+function Button({children, className, ...props}) {
   return (
-    <button {...props}>{children}</button>
+    <button className={className} {...props}>{children}</button>
   )
 }
 
