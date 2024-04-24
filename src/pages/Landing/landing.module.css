@@ -1,0 +1,43 @@
+.landing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 100dvh;
+  background-image: url("../../assets/landing-bg.png");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  p {
+    font-size: calc(32 / 16 * 1rem);
+
+    span {
+      color: #fff;
+    }
+  }
+}
+
+.btns {
+  margin-block-start: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  color: #a089d7;
+
+  & > button {
+    padding: 10px;
+    border-radius: 30px;
+    background-color: #fff;
+  }
+
+  & + button {
+    margin-block-start: 80px;
+    background-color: #c782f1;
+    border-radius: 10px;
+    padding: 10px;
+    width: 30%;
+  }
+}
