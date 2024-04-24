@@ -8,7 +8,7 @@ const SignUp = () => {
                     <div className="h-full w-full md:w-1/2 flex justify-center items-center">
                          <div className="h-fit w-full md:w-[450px] flex flex-col justify-center gap-5 md:gap-10">
                               <h1 className="font-normal text-md md:text-lg text-white font-Bayon text-center">Welcome to <span className="text-primary-default">Will Be There</span></h1>
-                              <form noValidate className="flex flex-col gap-5 md:gap-10" style={{ border: "2px solid red" }}>
+                              <form noValidate className="flex flex-col gap-5 md:gap-10">
                                    <div className="px-5 flex flex-col gap-5 md:gap-10">
                                         {/* <div className="flex flex-col gap-10"> */}
                                         <div className="flex flex-col font-Bayon">
