@@ -51,21 +51,4 @@
   }
 }
 
-.btn {
-    width: 100%;
-    text-align: left;
-    justify-content: start;
-    gap: 10px;
 
-    svg {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #000;
-        background-color: #fff; 
-        width: 15px;
-        height: 15px;
-        padding: 5px;
-        border-radius: 50%;
-    }
-}

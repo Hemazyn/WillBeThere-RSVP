@@ -3,10 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faArrowRightToBracket,
     faEllipsisVertical,
-    faPen,
     faPlus,
     faTrashCan,
-    faXmark
 } from "@fortawesome/free-solid-svg-icons";
 import { Avatar, BookmarkIcon, Button, EventCard, EventCardIcon, EventCardDetails, Tab, TabList, TabPanel, CardMenu } from "../../components";
 import { useState } from "react";
@@ -67,13 +65,7 @@ function UserAccount() {
         <EventCard key={event}>
           <EventCardIcon onClick={() => setIsMenuVisible(!isMenuVisible)}>
             <FontAwesomeIcon icon={faEllipsisVertical} />
-                                    {isMenuVisible && <CardMenu>
-                                        <Button className={styles.btn}>    <span><FontAwesomeIcon icon={faPen} /></span>edit event
-                                        </Button>
-                                        <Button className={styles.btn}>
-                                            <span><FontAwesomeIcon icon={faXmark} /></span>cancel event
-                                        </Button>
-                                    </CardMenu>}
+                                    {isMenuVisible && <CardMenu />}
           </EventCardIcon>
           <EventCardImage src={imageUrl} />
           <EventCardDetails name={event} date={"Event Date"} />
