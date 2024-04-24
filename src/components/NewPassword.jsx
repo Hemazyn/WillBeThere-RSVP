@@ -32,8 +32,6 @@ const NewPassword = () => {
                          )}
                     </div>
                </div>
-
-
           </>
      )
 }

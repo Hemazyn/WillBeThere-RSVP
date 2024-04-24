@@ -4,7 +4,6 @@ const Success = () => {
           <>
                <div className="h-screen flex flex-row">
                     <div className="h-full w-full lg:w-[450px] flex flex-col justifyevenly">
-
                          <form noValidate className="h-full flex flex-col px-5 justify-between items-center">
                               <div className="flex flex-col items-center">
                                    <h1 className="font-normal text-md md:text-lg text-primary-default font-Bayon uppercase">reset your password </h1>
@@ -15,13 +14,11 @@ const Success = () => {
                                         <svg width="23" height="18" viewBox="0 0 23 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                              <path d="M0.506348 10.2608L3.12487 7.64227L7.92116 12.4367L20.123 0.234863L22.7415 2.85338L7.91931 17.6737L0.506348 10.2608Z" fill="white" />
                                         </svg>
-
                                    </div>
                                    <span className="font-Bayon font-normal text-base uppercase text-primary-default">congratulations! your password has been updated</span>
                               </div>
                               <button type="submit" className="w-full  bg-primary-light uppercase font-Bayon font-normal text-[16px] leading-[28.91px] rounded-[10px] py-2 md:py-4">Continue</button>
                          </form>
-
                     </div>
                </div>
           </>
