@@ -1,4 +1,4 @@
-import { EventCard } from "../../components";
+import { EventCard, EventCardIcon, EventCardDetails, EventCardImage } from "../../components";
 // import Header from "../components/Header";
 import styles from "./browse.module.css"
 
@@ -10,7 +10,13 @@ const Browse = () => {
       {/* <Header /> */}
       <div className={styles.wrapper}>
         {events.map((event) => (
-          <EventCard key={event} event={event} />
+          <EventCard key={event}>
+                    <EventCardIcon onClick={() => setIsBookmarked(!isBookmarked)}>
+            <FontAwesomeIcon icon={faEllipsisVertical} />
+          </EventCardIcon>
+          <EventCardImage src={imageUrl} />
+          <EventCardDetails name={event} date={"Event Date"} />
+</EventCard>
         ))}
       </div>
     </>

@@ -20,3 +20,9 @@ button {
     align-items: center;
     justify-content: center;
 }
+
+img {
+    border-radius: inherit;
+    max-width: 100%;
+  }
+

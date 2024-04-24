@@ -4,3 +4,8 @@ export { default as TabList } from "./TabList";
 export { default as Tab } from "./Tab";
 export { default as TabPanel } from "./TabPanel";
 export { default as EventCard } from "./EventCard";
+export { default as EventCardIcon } from "./EventCardIcon";
+export { default as EventCardDetails } from "./EventCardDetails";
+export { default as EventCardImage } from "./EventCardImage";
+export { default as BookmarkIcon } from "./BookmarkIcon";
+export { default as CardMenu } from "./CardMenu"
