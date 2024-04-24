@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { Home, Browse, CreateEvent, UserAccount, Landing } from "./pages";
+import { Browse, CreateEvent, UserAccount, Landing } from "./pages";
 import Layout from "./Layout";
 import { useState } from "react";
 
@@ -19,8 +19,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path="browse" element={<Browse />} />
+        <Route index element={<Browse />} />
         <Route path="create" element={<CreateEvent />} />
         <Route path="account" element={<UserAccount />} />
       </Route>
