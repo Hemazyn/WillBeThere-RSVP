@@ -4,7 +4,7 @@
   justify-content: center;
   flex-direction: column;
   min-height: 100dvh;
-  background-image: url("../../assets/landing-bg.png");
+  background-image: url('../../assets/landing-bg.png');
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -19,13 +19,13 @@
 
   p {
     font-size: calc(32 / 16 * 1rem);
-        text-align: center;
+    text-align: center;
 
-        @media screen and (min-width: 720px) {
-          & {
-                text-align: initial;
-            }
-        }
+    @media screen and (min-width: 720px) {
+      & {
+        text-align: initial;
+      }
+    }
 
     span {
       color: #fff;
@@ -38,13 +38,13 @@
   font-size: calc(24 / 16 * 1rem);
   width: fit-content;
   position: absolute;
-  top: 0;
+  top: 15px;
   left: 15px;
 
   @media screen and (min-width: 720px) {
     & {
       left: 50px;
-            top: 50px;
+      top: 50px;
     }
   }
 }
@@ -71,10 +71,10 @@
     padding: 10px;
     width: 100%;
 
-        @media screen and (min-width: 720px) {
-          & {
-                width: 30%;
-            }
-        }
+    @media screen and (min-width: 720px) {
+      & {
+        width: 30%;
+      }
+    }
   }
 }
