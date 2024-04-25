@@ -10,12 +10,10 @@ const SignUp = () => {
                               <h1 className="font-normal text-md md:text-lg text-white font-Bayon text-center">Welcome to <span className="text-primary-default">Will Be There</span></h1>
                               <form noValidate className="flex flex-col gap-5 md:gap-10">
                                    <div className="px-5 flex flex-col gap-5 md:gap-10">
-                                        {/* <div className="flex flex-col gap-10"> */}
                                         <div className="flex flex-col font-Bayon">
                                              <h2 className="text-base md:text-md text-start uppercase text-primary-default">sign up</h2>
                                              <p className="text-slate uppercase font-Bayon font-normal text-sm md:text-base">have an account? <Link to="/login" className="text-primary-default">login</Link></p>
                                         </div>
-                                        {/* inputs */}
                                         <div className="w-full flex flex-col font-Bayon gap-5 md:gap-[37px]">
                                              <input type="text" name="first_name" required autoComplete="none" placeholder="enter user name"
                                                   className="w-full flex text-primary-default text-sm md:text-base  uppercase rounded-[10px] border border-white outline-none  placeholder:text- p-[10px] placeholder:text-primary-default"
