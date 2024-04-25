@@ -13,7 +13,6 @@ import {
   SignUp,
   UserAccount,
 } from './pages';
-import { useState } from "react";
 
 function App() {
   return (
@@ -23,7 +22,7 @@ function App() {
         <Route index element={<Browse />} />
         <Route path="event">
           <Route path="create" element={<CreateEvent />} />
-          <Route path="/:id" element={<EventPage />} />
+          <Route path=":id" element={<EventPage />} />
         </Route>
         <Route path="profile" element={<UserAccount />} />
       </Route>
