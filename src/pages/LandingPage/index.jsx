@@ -4,11 +4,12 @@ import {
   faPlus,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from '../../components/Button';
 import styles from './landing.module.css';
 
 function LandingPage() {
+  const navigate = useNavigate();
   return (
     <div className={styles.landing}>
       <nav>
@@ -33,7 +34,7 @@ function LandingPage() {
         </Button>
         <Button>join events</Button>
       </div>
-      <Button>get started</Button>
+      <Button onClick={() => navigate('/auth/login')}>get started</Button>
     </div>
   );
 }

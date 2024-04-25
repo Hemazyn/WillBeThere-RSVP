@@ -1,8 +1,13 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import authbg from '../assets/auth_bg.png';
 import { TextInput } from '../components';
 
 const Login = () => {
+  const navigate = useNavigate();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    navigate('/app');
+  };
   return (
     <>
       <div className="h-screen flex flex-row">
@@ -12,7 +17,11 @@ const Login = () => {
               Welcome to{' '}
               <span className="text-primary-default">Will Be There</span>
             </h1>
-            <form noValidate className="flex flex-col gap-5 md:gap-10">
+            <form
+              onSubmit={handleSubmit}
+              noValidate
+              className="flex flex-col gap-5 md:gap-10"
+            >
               <div className="px-5 flex flex-col gap-5 md:gap-10">
                 <div className="flex flex-col font-Bayon">
                   <h2 className="text-base md:text-md text-start uppercase text-primary-default">
