@@ -1,0 +1,30 @@
+.tab {
+    border: 2px solid transparent;
+
+    & > span {
+        display: none;
+    }
+
+    @media screen and (min-width: 720px) {
+        & > span {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            padding: 10px;
+            background-color: #c782f1;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        & {
+            padding: 10px;
+        }
+    }
+}
+
+.active {
+    border-block-end: 2px solid #c782f1;
+}

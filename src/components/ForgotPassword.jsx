@@ -20,7 +20,7 @@ const ForgotPassword = () => {
     <>
       <div className="h-screen flex flex-row">
         <div className="h-full w-full md:w-md1 flex justify-center items-center">
-          <Link to="/login" className="absolute top-5 left-5">
+          <Link to="/auth/login" className="absolute top-5 left-5">
             <svg
               width="24"
               height="24"
@@ -53,7 +53,7 @@ const ForgotPassword = () => {
                     </h2>
                     <p className="text-slate uppercase font-Bayon font-normal text-sm md:textbase">
                       remember the password?{' '}
-                      <Link to="/login" className="text-primary-default">
+                      <Link to="/auth/login" className="text-primary-default">
                         login
                       </Link>
                     </p>

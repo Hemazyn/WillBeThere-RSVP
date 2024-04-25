@@ -1,6 +1,3 @@
-// import { library } from '@fortawesome/fontawesome-svg-core'
-// import { all } from '@awesome.me/kit-KIT_CODE/icons'
-// library.add(...all)
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
@@ -12,5 +9,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  </React.StrictMode>,
-)
+  </React.StrictMode>
+);

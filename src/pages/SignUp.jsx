@@ -20,7 +20,7 @@ const SignUp = () => {
                   </h2>
                   <p className="text-slate uppercase font-Bayon font-normal text-sm md:text-base">
                     have an account?{' '}
-                    <Link to="/login" className="text-primary-default">
+                    <Link to="/auth/login" className="text-primary-default">
                       login
                     </Link>
                   </p>

@@ -1,0 +1,13 @@
+.panel {
+  margin-block-start: 1rem;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.hidden {
+  display: none;
+}
+
+

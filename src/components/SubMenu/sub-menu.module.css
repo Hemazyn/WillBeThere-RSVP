@@ -1,0 +1,30 @@
+.wrapper {
+  position: absolute;
+  width: 202px;
+  background-color: #000;
+  right: 172px;
+  top: 100%;
+  color: #fff;
+  border-radius: 10px;
+
+  button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding: 10px;
+
+    &:not(:nth-of-type(1)) {
+      border-block-start: 1px solid #fff;
+    }
+  }
+}
+
+.sort {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-block-start: 12px solid #7f7f7f;
+}
