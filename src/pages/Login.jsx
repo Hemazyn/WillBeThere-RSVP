@@ -1,38 +1,61 @@
+import { useState } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import authbg from "../assets/auth_bg.png";
 import { TextInput } from "../components";
 
 const Login = () => {
+     const [loginData, setLoginData] = useState({});
+     const [showModal, setShowModal] = useState(false);
+     const [modalTitle, setModalTitle] = useState("");
+     const [modalMessage, setModalMessage] = useState("");
+
+     const handleChange = (e) => {
+          const { name, value } = e.target;
+          e.target.setCustomValidity("");
+          setLoginData(prevValue => ({ ...prevValue, [name]: value }));
+     }
+
+     const handleLogin = (e) => {
+          e.preventDefault();
+          axios.post("https://will-be-there-auth-server.onrender.com/api/login/", {
+               username: loginData.username,
+               password: loginData.password
+          }).then((response) => {
+               const data = response.data;
+               console.log("Login successful:", data);
+               setModalTitle("Login Successful");
+               setModalMessage("You have successfully logged in!");
+               setShowModal(true);
+          }).catch((error) => {
+               console.error("Login failed:", error);
+               setModalTitle("Login Failed");
+               setModalMessage("Failed to log in. Please check your username & password and try again.");
+               setShowModal(true);
+          });
+     }
+
+     const closeModal = () => {
+          setShowModal(false);
+     }
+
      return (
           <>
                <div className="h-screen flex flex-row">
                     <div className="h-full w-full md:w-md1 flex justify-center items-center">
                          <div className="h-fit w-full md:w-md2 flex flex-col justify-center gap-5 md:gap-10">
                               <h1 className="font-normal text-md md:text-lg text-white font-Bayon text-center">Welcome to <span className="text-primary-default">Will Be There</span></h1>
-                              <form noValidate className="flex flex-col gap-5 md:gap-10">
+                              <form noValidate onSubmit={handleLogin} className="flex flex-col gap-5 md:gap-10">
                                    <div className="px-5 flex flex-col gap-5 md:gap-10">
                                         <div className="flex flex-col font-Bayon">
                                              <h2 className="text-base md:text-md text-start uppercase text-primary-default">login</h2>
-                                             <p className="text-slate uppercase font-Bayon font-normal text-sm md:text-base">doesn’t have an account? <Link to="/signup" className="text-primary-default">sign up</Link></p>
+                                             <p className="text-slate uppercase font-Bayon font-normal text-sm md:text-base">doesn’t have an account? <Link to="/auth/signup" className="text-primary-default cursor-pointer">sign up</Link></p>
                                         </div>
                                         <div className="w-full flex flex-col font-Bayon gap-5 md:gap-8">
-                                             <TextInput
-                                                  type="text"
-                                                  name="first_name"
-                                                  placeholder="enter user name"
-                                                  required={true}
-                                                  onInvalid={(e) => e.target.setCustomValidity("enter user name")}
-                                                  onInput={(e) => e.target.setCustomValidity("")}
-                                             />
-
+                                             <TextInput type="text" name="username" placeholder="enter user name" required={true} onInput={handleChange} value={loginData.username || ""} />
                                              <div className="flex flex-col gap-3 md:gap-5">
-                                                  <TextInput
-                                                       type="password"
-                                                       name="password"
-                                                       placeholder="enter password"
-                                                       required={true}
-                                                  />
-                                                  <Link to="/forgot" className="text-primary-default uppercase text-sm text-end underline">forgot your password</Link>
+                                                  <TextInput type="password" name="password" placeholder="enter password" required={true} onInput={handleChange} value={loginData.password || ""} />
+                                                  <Link to="/auth/forgot-password" className="text-primary-default uppercase text-sm text-end underline cursor-pointer">forgot your password</Link>
                                              </div>
                                         </div>
                                    </div>
@@ -40,7 +63,7 @@ const Login = () => {
                                    {/* icons */}
                                    <div className="flex flex-col w-full items-center gap-5 md:gap-10 px-5">
                                         <div className="flex flex-row font-Bayon gap-[60px]">
-                                             <Link to="">
+                                             <Link to="" className="cursor-pointer">
                                                   <svg className="w-10 h-10 md:w-15 md:h-15" viewBox="0 0 60 60" fill="white" xmlns="http://www.w3.org/2000/svg">
                                                        <g>
                                                             <rect width="60" height="60" rx="10" />
@@ -56,23 +79,39 @@ const Login = () => {
                                                        </defs>
                                                   </svg>
                                              </Link>
-                                             <Link to="">
+                                             <Link to="" className="cursor-pointer">
                                                   <svg className="w-10 h-10 md:w-15 md:h-15" viewBox="0 0 60 60" fill="white" xmlns="http://www.w3.org/2000/svg">
                                                        <rect width="60" height="60" rx="10" />
                                                        <path d="M18 30.067C18 36.0335 22.3333 40.9944 28 42V33.3333H25V30H28V27.3333C28 24.3333 29.9333 22.6667 32.6667 22.6667C33.5333 22.6667 34.4667 22.8 35.3333 22.9333V26H33.8C32.3333 26 32 26.7333 32 27.6667V30H35.2L34.6667 33.3333H32V42C37.6667 40.9944 42 36.0335 42 30.067C42 23.4302 36.6 18 30 18C23.4 18 18 23.4302 18 30.067Z" fill="#1877F2" />
                                                   </svg>
                                              </Link>
                                         </div>
-                                        <button type="submit" className="w-full  bg-primary-light uppercase font-Bayon font-normal text-base rounded-10 py-2 md:py-4">Continue</button>
+                                        <button type="submit" className="w-full bg-primary-light uppercase font-Bayon font-normal text-base rounded-10 py-2 md:py-4">Continue</button>
                                    </div>
                               </form>
                          </div>
-
                     </div>
                     <img src={authbg} alt="sidebar bg" className="w-1/2 h-full hidden md:block" />
-               </div >
+               </div>
+
+               {/* Modal */}
+               {showModal && (
+                    <div className="fixed z-50 inset-0 overflow-y-auto flex items-start justify-center mt-3 bg-opacity-50">
+                         <div className="relative bg-gradient-background rounded-lg p-8 w-96">
+                              <div className="flex flex-col justify-between items-start text-white mb-4">
+                                   <h3 className="text-lg font-semibold">{modalTitle}</h3>
+                                   <span className="text-sm">{modalMessage}</span>
+                              </div>
+                              <button className="absolute top-5 right-5 text-white hover:text-gray-800 focus:outline-none" onClick={closeModal}>
+                                   <svg className="h-6 w-6" fill="white" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                   </svg>
+                              </button>
+                         </div>
+                    </div>
+               )}
           </>
      )
 }
 
-export default Login
+export default Login;

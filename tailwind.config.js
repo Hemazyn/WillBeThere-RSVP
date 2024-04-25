@@ -41,7 +41,10 @@ export default {
       },
       borderRadius: {
         '10': '10px',
-      }
+      },
+      backgroundImage: {
+        'gradient-background': 'linear-gradient(90deg, #140e1a 25%, #634480 100%)',
+      },
     },
     fontFamily: {
       Bayon: ["Bayon", "sans-serif"],

@@ -4,7 +4,7 @@ const Success = () => {
      return (
           <>
                <div className="h-screen flex flex-row">
-                    <div className="h-full w-full lg:w-[450px] flex flex-col justifyevenly">
+                    <div className="h-full w-full lg:w-[450px] flex flex-col">
                          <form noValidate className="h-full flex flex-col px-5 justify-between items-center">
                               <div className="flex flex-col items-center">
                                    <h1 className="font-normal text-md md:text-lg text-primary-default font-Bayon uppercase">reset your password </h1>
@@ -18,7 +18,7 @@ const Success = () => {
                                    </div>
                                    <span className="font-Bayon font-normal text-base uppercase text-primary-default">congratulations! your password has been updated</span>
                               </div>
-                              <Link to="/login" className="w-full">
+                              <Link to="/auth/login" className="w-full">
                                    <button type="submit" className="w-full  bg-primary-light uppercase font-Bayon font-normal text-base rounded-10 py-2 md:py-4">Continue</button>
                               </Link>
                          </form>

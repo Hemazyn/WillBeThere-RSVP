@@ -10,11 +10,11 @@ function App() {
         <Route index element={<Home />} />
         <Route path="browse" element={<Browse />} />
         <Route path="create" element={<CreateEvent />} />
-        <Route path="signup" element={<SignUp />} />
-        <Route path="login" element={<Login />} />
-        <Route path="forgot" element={<ForgotPassword />} />
-
-
+        <Route path="/auth">
+          <Route path="signup" element={<SignUp />} />
+          <Route path="login" element={<Login />} />
+          <Route path="forgot-password" element={<ForgotPassword />} />
+        </Route>
       </Route>
     </Routes>
   )
