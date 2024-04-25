@@ -1,33 +1,33 @@
 .wrapper {
-    width: 168px;
-    padding: 10px;
-    position: absolute;
-    top: 30px;
-    right: 0;
-    background-color: #000;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 5px;
-    color: #fff;
+  width: 168px;
+  padding: 10px;
+  position: absolute;
+  top: 55px;
+  right: 30px;
+  background-color: #000;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  color: #fff;
 }
 
 .btn {
-    width: 100%;
-    text-align: left;
-    justify-content: start;
-    gap: 10px;
+  width: 100%;
+  text-align: left;
+  justify-content: start;
+  gap: 10px;
 
-    svg {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #000;
-        background-color: #fff; 
-        width: 15px;
-        height: 15px;
-        padding: 5px;
-        border-radius: 50%;
-    }
+  svg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    background-color: #fff;
+    width: 15px;
+    height: 15px;
+    padding: 5px;
+    border-radius: 50%;
+  }
 }

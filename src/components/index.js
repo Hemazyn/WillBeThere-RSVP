@@ -10,3 +10,5 @@ export { default as Nav } from './Nav';
 export { default as MailCheck } from './MailCheck';
 export { default as SubMenu } from './SubMenu';
 export { default as TextInput } from './TextInput';
+export { default as MenuIcon } from "./MenuIcon"
+export { default as EventCardIcon } from "./EventCardIcon"

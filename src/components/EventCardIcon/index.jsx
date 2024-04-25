@@ -1,8 +1,9 @@
+import Button from "../Button"
 import styles from "./event-card-icon.module.css"
 
-function EventCardIcon({Icon, children, ...props}) {
+function EventCardIcon({children, ...props}) {
   return (
-    <div className={styles.icon} {...props}>{children}</div>
+    <Button className={styles.icon} {...props}>{children}</Button>
   )
 }
 
