@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import Button from '../../components/Button';
 import styles from './landing.module.css';
 
-function Landing() {
+function LandingPage() {
   return (
     <div className={styles.landing}>
       <nav>
@@ -33,11 +33,11 @@ function Landing() {
         </Button>
         <Button>join events</Button>
       </div>
-      <Button as="a" href="/login">
+      <Button as="a" href="/auth/signup">
         get started
       </Button>
     </div>
   );
 }
 
-export default Landing;
+export default LandingPage;

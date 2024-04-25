@@ -1,5 +1,7 @@
-function Button({ children, className, as, ...props }) {
-  const Component = as || 'button';
+import PropTypes from 'prop-types';
+
+function Button({ children, as, className, ...props }) {
+  const Component = as;
 
   return (
     <Component className={className} {...props}>
@@ -7,5 +9,15 @@ function Button({ children, className, as, ...props }) {
     </Component>
   );
 }
+
+Button.defaultProps = {
+  as: 'button',
+};
+
+Button.propTypes = {
+  children: PropTypes.node.isRequired,
+  as: PropTypes.oneOf('button', 'a'),
+  className: PropTypes.string,
+};
 
 export default Button;

@@ -1,27 +1,34 @@
-import { Routes, Route } from 'react-router-dom';
-import { Browse, CreateEvent, UserAccount, Landing } from './pages';
-import Layout from './Layout';
-import { useState } from 'react';
+/* eslint-disable no-unused-vars */
+import { Route, Routes } from 'react-router-dom';
+import AppLayout from './layouts/AppLayout';
+import AuthLayout from './layouts/AuthLayout';
+import {
+  Browse,
+  CreateEvent,
+  ForgotPassword,
+  LandingPage,
+  Login,
+  ResetPassword,
+  SignUp,
+  UserAccount,
+} from './pages';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
-
-  if (!isLoggedIn) {
-    return (
-      <Routes>
-        <Route path="/">
-          <Route index element={<Landing />} />
-        </Route>
-      </Routes>
-    );
-  }
-
   return (
     <Routes>
-      <Route path="/" element={<Layout />}>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/app" element={<AppLayout />}>
         <Route index element={<Browse />} />
-        <Route path="create" element={<CreateEvent />} />
-        <Route path="account" element={<UserAccount />} />
+        <Route path="event">
+          <Route path="create" element={<CreateEvent />} />
+        </Route>
+        <Route path="profile" element={<UserAccount />} />
+      </Route>
+      <Route path="/auth" element={<AuthLayout />}>
+        <Route path="signup" element={<SignUp />} />
+        <Route path="login" element={<Login />} />
+        <Route path="forgot-password" element={<ForgotPassword />} />
+        <Route path="reset-password" element={<ResetPassword />} />
       </Route>
     </Routes>
   );

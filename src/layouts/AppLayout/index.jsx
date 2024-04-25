@@ -1,8 +1,8 @@
-import { Outlet } from "react-router-dom";
-import { Nav } from "../components";
-import styles from "./layout.module.css";
+import { Outlet } from 'react-router-dom';
+import { Nav } from '../../components';
+import styles from './layout.module.css';
 
-function Layout() {
+function AppLayout() {
   return (
     <div>
       <header className={styles.header}>
@@ -15,4 +15,4 @@ function Layout() {
   );
 }
 
-export default Layout;
+export default AppLayout;
