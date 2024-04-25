@@ -1,10 +1,10 @@
-import { Routes, Route } from "react-router-dom";
-import { Browse, CreateEvent, UserAccount, Landing } from "./pages";
-import Layout from "./Layout";
-import { useState } from "react";
+import { Routes, Route } from 'react-router-dom';
+import { Browse, CreateEvent, UserAccount, Landing } from './pages';
+import Layout from './Layout';
+import { useState } from 'react';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   if (!isLoggedIn) {
     return (
