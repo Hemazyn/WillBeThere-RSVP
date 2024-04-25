@@ -1,4 +1,4 @@
-import { EventCard } from "../../components";
+import { EventCard } from '../../components';
 // import Header from "../components/Header";
 import styles from "./browse.module.css";
 import { getEvents } from "../../services/events";

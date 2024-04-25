@@ -1,0 +1,81 @@
+.landing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 100dvh;
+  background-image: url('../../assets/landing-bg.png');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  position: relative;
+  padding: 15px;
+
+  @media screen and (min-width: 720px) {
+    & {
+      padding-inline: 50px;
+    }
+  }
+
+  p {
+    font-size: calc(32 / 16 * 1rem);
+    text-align: center;
+
+    @media screen and (min-width: 720px) {
+      & {
+        text-align: initial;
+      }
+    }
+
+    span {
+      color: #fff;
+    }
+  }
+}
+
+.logo {
+  color: #a089d7;
+  font-size: calc(24 / 16 * 1rem);
+  width: fit-content;
+  position: absolute;
+  top: 15px;
+  left: 15px;
+
+  @media screen and (min-width: 720px) {
+    & {
+      left: 50px;
+      top: 50px;
+    }
+  }
+}
+
+.btns {
+  margin-block-start: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  color: #a089d7;
+
+  & > button {
+    padding: 10px;
+    border-radius: 30px;
+    background-color: #fff;
+  }
+
+  & + a {
+    text-align: center;
+    margin-block-start: 80px;
+    background-color: #c782f1;
+    border-radius: 10px;
+    padding: 10px;
+    width: 100%;
+
+    @media screen and (min-width: 720px) {
+      & {
+        width: 30%;
+      }
+    }
+  }
+}
