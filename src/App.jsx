@@ -1,12 +1,11 @@
-/* eslint-disable no-unused-vars */
 import { Route, Routes } from 'react-router-dom';
 import AppLayout from './layouts/AppLayout';
 import AuthLayout from './layouts/AuthLayout';
 import {
   Browse,
   CreateEvent,
-  ForgotPassword,
   EventPage,
+  ForgotPassword,
   LandingPage,
   Login,
   ResetPassword,

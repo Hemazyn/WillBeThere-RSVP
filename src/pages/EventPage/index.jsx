@@ -1,7 +1,7 @@
-import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 import axios from 'axios';
 import moment from 'moment';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 const EventPage = () => {
   const { id } = useParams();
@@ -54,18 +54,18 @@ const EventPage = () => {
                   <div className="p-3">
                     <p className="text-slate text-sm">Date</p>
                     <h1 className="text-2xl text-white">
-                      {moment(item.date).format("D MMM[,] HH:mm [GMT] Z")}
+                      {moment(item.date).format('D MMM[,] HH:mm [GMT] Z')}
                     </h1>
                   </div>
                   <div className="p-3">
                     <p className="text-slate text-sm">Duration</p>
                     <h1 className="text-xl text-white">
                       {item.duration.days === 0 ? (
-                        ""
+                        ''
                       ) : (
                         <>Days: {item.duration.days} -</>
-                      )}{" "}
-                      Hours: {item.duration.hours} - Min:{" "}
+                      )}{' '}
+                      Hours: {item.duration.hours} - Min:{' '}
                       {item.duration.minutes}
                     </h1>
                   </div>
