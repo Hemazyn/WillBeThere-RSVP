@@ -1,10 +1,10 @@
-/* eslint-disable no-unused-vars */
 import { Route, Routes } from 'react-router-dom';
 import AppLayout from './layouts/AppLayout';
 import AuthLayout from './layouts/AuthLayout';
 import {
   Browse,
   CreateEvent,
+  EventPage,
   ForgotPassword,
   LandingPage,
   Login,
@@ -21,6 +21,7 @@ function App() {
         <Route index element={<Browse />} />
         <Route path="event">
           <Route path="create" element={<CreateEvent />} />
+          <Route path=":id" element={<EventPage />} />
         </Route>
         <Route path="profile" element={<UserAccount />} />
       </Route>
