@@ -1,53 +1,43 @@
+import { Loading, Notify } from 'notiflix';
+import { useEffect, useState } from 'react';
 import { EventCard } from '../../components';
-// import Header from "../components/Header";
-import styles from "./browse.module.css";
-import { getEvents } from "../../services/events";
-import { useEffect, useState } from "react";
-import { RotatingLines } from "react-loader-spinner";
+import { getEvents } from '../../services/events';
+import styles from './browse.module.css';
 
 const Browse = () => {
   const [events, setEvents] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    Loading.hourglass();
+
     getEvents()
-      .then((res) => {
-        const { response } = res;
+      .then(({ response }) => {
         setEvents(response);
-        setIsLoading(false);
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
+        Notify.failure(
+          'Unable to fetch events at this time, please try again later'
+        );
+      })
+      .finally(() => {
+        setIsLoading(false);
+        Loading.remove();
       });
   }, []);
 
   return (
-    <>
-      {/* <Header /> */}
+    !isLoading && (
       <div className={styles.wrapper}>
-        {isLoading ? (
-          <RotatingLines
-          visible={true}
-          height="110"
-          width="110"
-          strokeColor="white"
-          strokeWidth="5"
-          animationDuration="0.75"
-          ariaLabel="rotating-lines-loading"
-          />
+        {events.length === 0 ? (
+          <h1 className="text-white text-4xl">
+            No event to display at the moment
+          </h1>
         ) : (
-          <>
-            {events.length === 0 ? (
-              <h1 className="text-white text-4xl">
-                No event to display at the moment
-              </h1>
-            ) : (
-              events.map((event) => <EventCard key={event.id} event={event} />)
-            )}
-          </>
+          events.map((event) => <EventCard key={event.id} event={event} />)
         )}
       </div>
-    </>
+    )
   );
 };
 

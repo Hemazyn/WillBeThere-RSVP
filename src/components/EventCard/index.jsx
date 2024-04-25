@@ -1,12 +1,10 @@
 import { faBookmark as notBookmarked } from '@fortawesome/free-regular-svg-icons';
 import { faBookmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import moment from 'moment';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import styles from './event-card.module.css';
-import moment from "moment";
-const imageUrl = `https://s3-alpha-sig.figma.com/img/699d/1183/8d9716e61a45f9e95043b56334473c19?Expires=1714348800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=RZ4xRYD3OvMQM-9CYNL9jNLYbACRF-T7yDNBW904td9Y3hw6WnzRARE8iebdaW0X930VG0s~eD2FQ1h4DCy2Oyly9ajQBeGkpdN1XR2zXRCaVt~n7NxYtdEORMyqYq18Q6q1a6jEUGdnxBtA2Z22UaPKHK4BxrifO3PYCqr6MTLMnmggWE3VnSVBu751JDB2WwyUKbV~vLOmFdoeeWENxxirrIP-3d6agV5darB9BgxV31VawN6DNPJ8YKYSg4vURbetFmbTJCxmHkkbq8TnfKgUwxs3x0aLmo8Op1BtBLNcz7rPc8fgZGQZFBkQS~6U8hZ1n3E1w66OIELE4Mn7kA__`;
-
 
 function EventCard({ event }) {
   const [isBookmarked, setIsBookmarked] = useState(false);
@@ -16,19 +14,20 @@ function EventCard({ event }) {
       <div
         className={styles.bookmark}
         onClick={() => {
-            const bookmarks = JSON.parse(
-                localStorage.getItem("bookmarks") || "[]"
-              );
+          const bookmarks = JSON.parse(
+            localStorage.getItem('bookmarks') || '[]'
+          );
           if (isBookmarked) {
             bookmarks.push(event);
-            localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+            localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
           } else {
-            const newBookmarks = bookmarks.filter((item) => item.id !== event.id);
-            localStorage.setItem("bookmarks", JSON.stringify(newBookmarks))
+            const newBookmarks = bookmarks.filter(
+              (item) => item.id !== event.id
+            );
+            localStorage.setItem('bookmarks', JSON.stringify(newBookmarks));
           }
           setIsBookmarked(!isBookmarked);
         }}
-
       >
         {isBookmarked ? (
           <FontAwesomeIcon icon={faBookmark} />
@@ -36,11 +35,11 @@ function EventCard({ event }) {
           <FontAwesomeIcon icon={notBookmarked} />
         )}
       </div>
-      <img src={event.image} alt="" />
+      <img src={event.image} className="w-full h-full" alt="" />
       <div className={styles.details}>
         <h2 className="text-white">{event.name}</h2>
         <p className="text-slate">
-          {moment(event.date).format("D MMM HH:mm [GMT] Z")} <br />{" "}
+          {moment(event.date).format('D MMM HH:mm [GMT] Z')} <br />{' '}
           {event.location}
         </p>
       </div>
@@ -49,7 +48,7 @@ function EventCard({ event }) {
 }
 
 EventCard.propTypes = {
-  event: PropTypes.string.isRequired,
+  event: PropTypes.object.isRequired,
 };
 
 export default EventCard;
