@@ -7,6 +7,7 @@ export default {
   ],
   theme: {
     fontSize: {
+      xs: ['12px', '0'],
       sm: ['14px', '20px'],
       base: ['16px', '28.91px'],
       md: ['24px', '43.36px'],
@@ -19,9 +20,29 @@ export default {
         dark: "#8338EC",
       },
       white: "#ffffff",
-      slate: "#9ca3af"
+      slate: "#9ca3af",
+      red: "#FF0000",
     },
-    extend: {},
+    extend: {
+      width: {
+        'md1': '50%',
+        'md2': '450px',
+        '10': '40px',
+        '15': '60px',
+        '25': '10px',
+      },
+      height: {
+        '10': '40px',
+        '15': '60px',
+        '25': '10px',
+      },
+      padding: {
+        '10': '10px',
+      },
+      borderRadius: {
+        '10': '10px',
+      }
+    },
     fontFamily: {
       Bayon: ["Bayon", "sans-serif"],
     }
