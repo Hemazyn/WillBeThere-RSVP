@@ -1,12 +1,14 @@
 /* eslint-disable no-unused-vars */
 import { Route, Routes } from 'react-router-dom';
-import AppLayout from './Layout';
-import { ForgotPassword } from './components';
+import AppLayout from './layouts/AppLayout';
+import AuthLayout from './layouts/AuthLayout';
 import {
   Browse,
   CreateEvent,
+  ForgotPassword,
   LandingPage,
   Login,
+  ResetPassword,
   SignUp,
   UserAccount,
 } from './pages';
@@ -22,10 +24,11 @@ function App() {
         </Route>
         <Route path="profile" element={<UserAccount />} />
       </Route>
-      <Route path="/auth">
+      <Route path="/auth" element={<AuthLayout />}>
         <Route path="signup" element={<SignUp />} />
         <Route path="login" element={<Login />} />
         <Route path="forgot-password" element={<ForgotPassword />} />
+        <Route path="reset-password" element={<ResetPassword />} />
       </Route>
     </Routes>
   );

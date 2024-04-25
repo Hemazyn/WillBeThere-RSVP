@@ -1,7 +1,6 @@
 export { default as Avatar } from './Avatar';
 export { default as Button } from './Button';
 export { default as EventCard } from './EventCard';
-export { default as ForgotPassword } from './ForgotPassword';
 export { default as MailCheck } from './MailCheck';
 export { default as Nav } from './Nav';
 export { default as SubMenu } from './SubMenu';

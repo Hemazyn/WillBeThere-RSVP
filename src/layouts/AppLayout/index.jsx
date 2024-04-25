@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import { Nav } from '../components';
+import { Nav } from '../../components';
 import styles from './layout.module.css';
 
 function AppLayout() {
