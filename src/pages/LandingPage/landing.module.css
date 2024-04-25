@@ -64,7 +64,8 @@
     background-color: #fff;
   }
 
-  & + button {
+  & + a {
+    text-align: center;
     margin-block-start: 80px;
     background-color: #c782f1;
     border-radius: 10px;
