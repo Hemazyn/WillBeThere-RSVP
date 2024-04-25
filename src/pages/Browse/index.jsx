@@ -1,9 +1,9 @@
-import { EventCard } from "../../components";
+import { EventCard } from '../../components';
 // import Header from "../components/Header";
-import styles from "./browse.module.css"
+import styles from './browse.module.css';
 
 const Browse = () => {
-    const events = Array.from({length: 12}, (_, i) => `Event ${i + 1}`)
+  const events = Array.from({ length: 12 }, (_, i) => `Event ${i + 1}`);
 
   return (
     <>
