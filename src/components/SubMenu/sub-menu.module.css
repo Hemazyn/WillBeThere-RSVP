@@ -2,10 +2,11 @@
   position: absolute;
   width: 202px;
   background-color: #000;
-  right: 172px;
+  right: 15%;
   top: 100%;
   color: #fff;
   border-radius: 10px;
+  z-index: 1000;
 
   button {
     width: 100%;
