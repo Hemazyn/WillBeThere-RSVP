@@ -16,7 +16,7 @@ Button.defaultProps = {
 
 Button.propTypes = {
   children: PropTypes.node.isRequired,
-  as: PropTypes.oneOf('button', 'a'),
+  as: PropTypes.oneOf(['button', 'a']),
   className: PropTypes.string,
 };
 

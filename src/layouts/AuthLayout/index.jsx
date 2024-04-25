@@ -1,6 +1,5 @@
-import PropTypes from 'prop-types';
-import authbg from '../../assets/auth_bg.png';
 import { Outlet } from 'react-router-dom';
+import authbg from '../../assets/auth_bg.png';
 
 const AuthLayout = () => {
   return (
@@ -15,10 +14,6 @@ const AuthLayout = () => {
       />
     </div>
   );
-};
-
-AuthLayout.propTypes = {
-  children: PropTypes.node.isRequired,
 };
 
 export default AuthLayout;
