@@ -1,8 +1,8 @@
 import {
-  faArrowRightToBracket,
-  faPlus,
-  faTrashCan,
-} from '@fortawesome/free-solid-svg-icons';
+    faArrowRightToBracket,
+    faPlus,
+    faTrashCan,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -17,7 +17,7 @@ const tabs = [
 ];
 
 function UserAccount() {
-  const [activeTab, setActiveTab] = useState('my events');
+   const [activeTab, setActiveTab] = useState('my events');
   const navigate = useNavigate();
 
   return (

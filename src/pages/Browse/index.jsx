@@ -36,6 +36,7 @@ const Browse = () => {
         ) : (
           events.map((event) => <EventCard key={event.id} event={event} />)
         )}
+
       </div>
     )
   );
