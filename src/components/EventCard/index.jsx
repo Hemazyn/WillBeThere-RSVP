@@ -1,13 +1,18 @@
-import { faBookmark as notBookmarked } from '@fortawesome/free-regular-svg-icons';
-import { faBookmark } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import moment from 'moment';
-import PropTypes from 'prop-types';
-import { useState } from 'react';
-import styles from './event-card.module.css';
+import { faBookmark as notBookmarked } from "@fortawesome/free-regular-svg-icons";
+import { faBookmark } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import moment from "moment";
+import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
+import styles from "./event-card.module.css";
 
 function EventCard({ event }) {
   const [isBookmarked, setIsBookmarked] = useState(false);
+
+  useEffect(() => {
+    const storedBookmarks = JSON.parse(localStorage.getItem("bookmarks") || "[]")
+    setIsBookmarked(storedBookmarks.find(obj => obj?.id === event.id) !== undefined)
+  }, [event.id]);
 
   return (
     <article className={styles.card}>
@@ -15,16 +20,16 @@ function EventCard({ event }) {
         className={styles.bookmark}
         onClick={() => {
           const bookmarks = JSON.parse(
-            localStorage.getItem('bookmarks') || '[]'
+            localStorage.getItem("bookmarks") || "[]"
           );
-          if (isBookmarked) {
+          if (!isBookmarked) {
             bookmarks.push(event);
-            localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+            localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
           } else {
             const newBookmarks = bookmarks.filter(
               (item) => item.id !== event.id
             );
-            localStorage.setItem('bookmarks', JSON.stringify(newBookmarks));
+            localStorage.setItem("bookmarks", JSON.stringify(newBookmarks));
           }
           setIsBookmarked(!isBookmarked);
         }}
@@ -39,7 +44,7 @@ function EventCard({ event }) {
       <div className={styles.details}>
         <h2 className="text-white">{event.name}</h2>
         <p className="text-slate">
-          {moment(event.date).format('D MMM HH:mm [GMT] Z')} <br />{' '}
+          {moment(event.date).format("D MMM HH:mm [GMT] Z")} <br />{" "}
           {event.location}
         </p>
       </div>
