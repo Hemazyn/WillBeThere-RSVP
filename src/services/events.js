@@ -9,4 +9,12 @@ const getEvents = () =>
       .catch((err) => reject({ error: err }));
   });
 
-export { getEvents };
+const getEventById = (id) =>
+  new Promise((resolve, reject) => {
+    return axios
+      .get(`${uri}/events/id/${id}`)
+      .then((res) => resolve({ response: res.data }))
+      .catch((err) => reject({ error: err }));
+  });
+
+export { getEvents, getEventById };
