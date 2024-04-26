@@ -10,6 +10,7 @@ import styles from "./nav.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import SubMenu from "../SubMenu";
+import Button from "../Button";
 
 function Nav() {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
@@ -32,17 +33,21 @@ function Nav() {
         </span>
       </div>
       <div className={styles.icons}>
-        <span className={styles.mobile}>
+        <Button className={styles.mobile}>
           <FontAwesomeIcon icon={faMagnifyingGlass} />
-        </span>
+        </Button>
+                <Button>
         <FontAwesomeIcon
           icon={faSliders}
           onClick={() => setIsMenuVisible(!isMenuVisible)}
         />
+        </Button>
+                <Button>
         <FontAwesomeIcon icon={faCirclePlus} onClick={() => navigate("/app/event/create")} />
-        <div className={styles.profile} onClick={() => navigate("/app/profile")}>
+        </Button>
+        <Button className={styles.profile} onClick={() => navigate("/app/profile")}>
           <Avatar className={styles.avatar} />
-        </div>
+        </Button>
       </div>
       {isMenuVisible && <SubMenu />}
     </nav>
