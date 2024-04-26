@@ -1,4 +1,4 @@
-import { EventCard } from '../../components';
+import { BookmarkIcon, EventCard } from '../../components';
 import styles from './browse.module.css';
 
 const Browse = () => {
@@ -8,7 +8,7 @@ const Browse = () => {
     <>
       <div className={styles.wrapper}>
         {events.map((event) => (
-          <EventCard key={event} event={event} />
+          <EventCard key={event} event={event} Icon={<BookmarkIcon />} />
         ))}
       </div>
     </>
