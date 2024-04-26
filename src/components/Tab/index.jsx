@@ -7,7 +7,7 @@ function Tab({ tab, activeTab }) {
 
   return (
     <Button id={tab.id} value={tab.label} className={style}>
-      {tab.label} <span>2</span>
+      {tab.label}
     </Button>
   );
 }

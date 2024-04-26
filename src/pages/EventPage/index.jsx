@@ -30,10 +30,10 @@ const EventPage = () => {
 
   return (
     <>
-      <main className="container mx-auto">
+      <main className="container mt-14 lg:mt-20 mx-auto">
         <div className="flex flex-col">
           <div className="flex flex-wrap w-full">
-            <h1 className="ml-5 lg:ml-0 w-1/4 text-white text-3xl p-3 border-b-2 border-white">
+            <h1 className="ml-5 lg:ml-0 w-1/4 text-white text-3xl px-3 border-b-2 border-white">
               Event
             </h1>
           </div>

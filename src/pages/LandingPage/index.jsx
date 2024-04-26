@@ -33,7 +33,7 @@ function LandingPage() {
         </Button>
         <Button>join events</Button>
       </div>
-      <Button as="a" href="/auth/signup">
+      <Button as="Link" to="/auth/signup">
         get started
       </Button>
     </div>
