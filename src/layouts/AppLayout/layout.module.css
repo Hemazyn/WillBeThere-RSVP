@@ -1,7 +1,9 @@
 .header {
   grid-area: header;
+  position: relative;
 }
 
 .main {
   grid-area: main;
+  padding-block-start: 60px;
 }

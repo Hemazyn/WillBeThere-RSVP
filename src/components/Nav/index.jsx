@@ -7,12 +7,14 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Avatar from "../Avatar";
 import styles from "./nav.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import SubMenu from "../SubMenu";
+import Button from "../Button";
 
 function Nav() {
-  const [isMenuVisible, setIsMenuVisible] = useState();
+  const [isMenuVisible, setIsMenuVisible] = useState(false);
+  const navigate = useNavigate()
 
   return (
     <nav className={styles.nav}>
@@ -24,27 +26,28 @@ function Nav() {
           type="search"
           name="search event"
           id="sd"
-          placeholder="search for people and events"
+          placeholder="search for events"
         />
         <span>
           <FontAwesomeIcon icon={faMagnifyingGlass} />
         </span>
       </div>
       <div className={styles.icons}>
-        <span className={styles.mobile}>
+        <Button className={styles.mobile}>
           <FontAwesomeIcon icon={faMagnifyingGlass} />
-        </span>
+        </Button>
+                <Button>
         <FontAwesomeIcon
           icon={faSliders}
           onClick={() => setIsMenuVisible(!isMenuVisible)}
         />
-        <FontAwesomeIcon icon={faCirclePlus} />
-        <div className={styles.profile}>
+        </Button>
+                <Button>
+        <FontAwesomeIcon icon={faCirclePlus} onClick={() => navigate("/app/event/create")} />
+        </Button>
+        <Button className={styles.profile} onClick={() => navigate("/app/profile")}>
           <Avatar className={styles.avatar} />
-          <span>
-            <FontAwesomeIcon icon={faAngleDown} />
-          </span>
-        </div>
+        </Button>
       </div>
       {isMenuVisible && <SubMenu />}
     </nav>

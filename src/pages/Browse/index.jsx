@@ -1,5 +1,4 @@
-import { EventCard } from '../../components';
-// import Header from "../components/Header";
+import { BookmarkIcon, EventCard } from '../../components';
 import styles from './browse.module.css';
 
 const Browse = () => {
@@ -7,10 +6,9 @@ const Browse = () => {
 
   return (
     <>
-      {/* <Header /> */}
       <div className={styles.wrapper}>
         {events.map((event) => (
-          <EventCard key={event} event={event} />
+          <EventCard key={event} event={event} Icon={<BookmarkIcon />} />
         ))}
       </div>
     </>
