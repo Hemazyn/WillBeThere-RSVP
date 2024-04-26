@@ -1,20 +1,18 @@
 import {
-  faAngleDown,
   faCirclePlus,
   faMagnifyingGlass,
   faSliders,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Avatar from "../Avatar";
-import styles from "./nav.module.css";
-import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
-import SubMenu from "../SubMenu";
-import Button from "../Button";
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import Avatar from '../Avatar';
+import Button from '../Button';
+import SubMenu from '../SubMenu';
+import styles from './nav.module.css';
 
 function Nav() {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
-  const navigate = useNavigate()
 
   return (
     <nav className={styles.nav}>
@@ -36,16 +34,16 @@ function Nav() {
         <Button className={styles.mobile}>
           <FontAwesomeIcon icon={faMagnifyingGlass} />
         </Button>
-                <Button>
-        <FontAwesomeIcon
-          icon={faSliders}
-          onClick={() => setIsMenuVisible(!isMenuVisible)}
-        />
+        <Button>
+          <FontAwesomeIcon
+            icon={faSliders}
+            onClick={() => setIsMenuVisible(!isMenuVisible)}
+          />
         </Button>
-                <Button>
-        <FontAwesomeIcon icon={faCirclePlus} onClick={() => navigate("/app/event/create")} />
+        <Button as="Link" to="/app/event/create">
+          <FontAwesomeIcon icon={faCirclePlus} />
         </Button>
-        <Button className={styles.profile} onClick={() => navigate("/app/profile")}>
+        <Button className={styles.profile} as="Link" to="/app/profile">
           <Avatar className={styles.avatar} />
         </Button>
       </div>
