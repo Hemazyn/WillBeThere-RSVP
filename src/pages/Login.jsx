@@ -1,15 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import authbg from "../assets/auth_bg.png";
-import { TextInput } from "../components";
 import Notiflix from "notiflix";
+import { GoogleIcon, TextInput } from "../components";
+import authbg from "../assets/auth_bg.png";
 
 const Login = () => {
      const [loginData, setLoginData] = useState({});
-     const [showModal, setShowModal] = useState(false);
-     const [modalTitle, setModalTitle] = useState("");
-     const [modalMessage, setModalMessage] = useState("");
 
      const handleChange = (e) => {
           const { name, value } = e.target;
@@ -24,26 +21,16 @@ const Login = () => {
           axios.post("https://will-be-there-auth-server.onrender.com/api/login/", {
                username: loginData.username,
                password: loginData.password
-          }).then((response) => {
+          }).then(() => {
                Notiflix.Loading.remove();
-               const data = response.data;
-               console.log("Login successful:", data);
-               setModalTitle("Login Successful");
-               setModalMessage("You have successfully logged in!");
-               setShowModal(true);
+               Notiflix.Notify.success("You have successfully logged in!");
                window.location.href = "/home";
 
           }).catch((error) => {
                Notiflix.Loading.remove();
                console.error("Login failed:", error);
-               setModalTitle("Login Failed");
-               setModalMessage("Failed to log in. Please check your username & password and try again.");
-               setShowModal(true);
+               Notiflix.Notify.failure("Failed to log in. Please check your username & password and try again.");
           });
-     }
-
-     const closeModal = () => {
-          setShowModal(false);
      }
 
      return (
@@ -69,30 +56,9 @@ const Login = () => {
                                    <hr className="border border-white" />
                                    {/* icons */}
                                    <div className="flex flex-col w-full items-center gap-5 md:gap-10 px-5">
-                                        <div className="flex flex-row font-Bayon gap-[60px]">
-                                             <Link to="" className="cursor-pointer">
-                                                  <svg className="w-10 h-10 md:w-15 md:h-15" viewBox="0 0 60 60" fill="white" xmlns="http://www.w3.org/2000/svg">
-                                                       <g>
-                                                            <rect width="60" height="60" rx="10" />
-                                                            <path d="M41.7666 27.6498H40.8V27.6H30V32.4H36.7818C35.7924 35.1942 33.1338 37.2 30 37.2C26.0238 37.2 22.8 33.9762 22.8 30C22.8 26.0238 26.0238 22.8 30 22.8C31.8354 22.8 33.5052 23.4924 34.7766 24.6234L38.1708 21.2292C36.0276 19.2318 33.1608 18 30 18C23.373 18 18 23.373 18 30C18 36.627 23.373 42 30 42C36.627 42 42 36.627 42 30C42 29.1954 41.9172 28.41 41.7666 27.6498Z" fill="#FFC107" />
-                                                            <path d="M19.3835 24.4146L23.3261 27.306C24.3929 24.6648 26.9765 22.8 29.9999 22.8C31.8353 22.8 33.5051 23.4924 34.7765 24.6234L38.1707 21.2292C36.0275 19.2318 33.1607 18 29.9999 18C25.3907 18 21.3935 20.6022 19.3835 24.4146Z" fill="#FF3D00" />
-                                                            <path d="M30 41.9999C33.0996 41.9999 35.916 40.8136 38.0454 38.8846L34.3314 35.7419C33.1266 36.6544 31.629 37.1999 30 37.1999C26.8788 37.1999 24.2286 35.2097 23.2302 32.4323L19.317 35.4472C21.303 39.3334 25.3362 41.9999 30 41.9999Z" fill="#4CAF50" />
-                                                            <path d="M41.7666 27.6499H40.8V27.6001H30V32.4001H36.7818C36.3066 33.7423 35.4432 34.8997 34.3296 35.7427C34.3302 35.7421 34.3308 35.7421 34.3314 35.7415L38.0454 38.8843C37.7826 39.1231 42 36.0001 42 30.0001C42 29.1955 41.9172 28.4101 41.7666 27.6499Z" fill="#1976D2" />
-                                                       </g>
-                                                       <defs>
-                                                            <clipPath id="clip0_42_1105">
-                                                                 <rect width="60" height="60" fill="white" />
-                                                            </clipPath>
-                                                       </defs>
-                                                  </svg>
-                                             </Link>
-                                             <Link to="" className="cursor-pointer">
-                                                  <svg className="w-10 h-10 md:w-15 md:h-15" viewBox="0 0 60 60" fill="white" xmlns="http://www.w3.org/2000/svg">
-                                                       <rect width="60" height="60" rx="10" />
-                                                       <path d="M18 30.067C18 36.0335 22.3333 40.9944 28 42V33.3333H25V30H28V27.3333C28 24.3333 29.9333 22.6667 32.6667 22.6667C33.5333 22.6667 34.4667 22.8 35.3333 22.9333V26H33.8C32.3333 26 32 26.7333 32 27.6667V30H35.2L34.6667 33.3333H32V42C37.6667 40.9944 42 36.0335 42 30.067C42 23.4302 36.6 18 30 18C23.4 18 18 23.4302 18 30.067Z" fill="#1877F2" />
-                                                  </svg>
-                                             </Link>
-                                        </div>
+                                        <button className="w-full flex items-center justify-center bg-white rounded-10">
+                                             <GoogleIcon />
+                                        </button>
                                         <button type="submit" className="w-full bg-primary-light uppercase font-Bayon font-normal text-base rounded-10 py-2 md:py-4">Continue</button>
                                    </div>
                               </form>
@@ -100,23 +66,6 @@ const Login = () => {
                     </div>
                     <img src={authbg} alt="sidebar bg" className="w-1/2 h-full hidden md:block" />
                </div>
-
-               {/* Modal */}
-               {showModal && (
-                    <div className="fixed z-50 inset-0 overflow-y-auto flex items-start justify-center mt-3 bg-opacity-50">
-                         <div className="relative bg-gradient-background rounded-lg p-8 w-96">
-                              <div className="flex flex-col justify-between items-start text-white mb-4">
-                                   <h3 className="text-lg font-semibold">{modalTitle}</h3>
-                                   <span className="text-sm">{modalMessage}</span>
-                              </div>
-                              <button className="absolute top-5 right-5 text-white hover:text-gray-800 focus:outline-none" onClick={closeModal}>
-                                   <svg className="h-6 w-6" fill="white" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                                   </svg>
-                              </button>
-                         </div>
-                    </div>
-               )}
           </>
      )
 }
