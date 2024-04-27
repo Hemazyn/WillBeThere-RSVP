@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Notiflix from "notiflix";
@@ -10,6 +11,7 @@ const SignUp = () => {
      const [showModal, setShowModal] = useState(false);
      const [modalTitle, setModalTitle] = useState("");
      const [modalMessage, setModalMessage] = useState("");
+     const history = useHistory();
 
      const handleChange = (e) => {
           const { name, value } = e.target;
