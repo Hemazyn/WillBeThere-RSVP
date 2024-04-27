@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import authbg from "../assets/auth_bg.png";
 import { TextInput } from "../components";
+import Notiflix from "notiflix";
 
 const Login = () => {
      const [loginData, setLoginData] = useState({});
@@ -18,16 +19,22 @@ const Login = () => {
 
      const handleLogin = (e) => {
           e.preventDefault();
+          Notiflix.Loading.standard("Logging in...");
+
           axios.post("https://will-be-there-auth-server.onrender.com/api/login/", {
                username: loginData.username,
                password: loginData.password
           }).then((response) => {
+               Notiflix.Loading.remove();
                const data = response.data;
                console.log("Login successful:", data);
                setModalTitle("Login Successful");
                setModalMessage("You have successfully logged in!");
                setShowModal(true);
+               window.location.href = "/home";
+
           }).catch((error) => {
+               Notiflix.Loading.remove();
                console.error("Login failed:", error);
                setModalTitle("Login Failed");
                setModalMessage("Failed to log in. Please check your username & password and try again.");

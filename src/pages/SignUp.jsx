@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Notiflix from "notiflix";
@@ -11,7 +10,6 @@ const SignUp = () => {
      const [showModal, setShowModal] = useState(false);
      const [modalTitle, setModalTitle] = useState("");
      const [modalMessage, setModalMessage] = useState("");
-     const history = useHistory();
 
      const handleChange = (e) => {
           const { name, value } = e.target;
@@ -37,17 +35,14 @@ const SignUp = () => {
                     setModalTitle("Sign-up Successful");
                     setModalMessage("You have successfully signed up!");
                     setShowModal(true);
-                    history.push("/auth/login");
+                    window.location.href = "/auth/login";
                })
                .catch((error) => {
                     console.error("Sign-up failed:", error);
                     console.error("Error details:", error.response);
                     if (error.response.status === 400) {
                          const errorMessage = error.response.data;
-                         if (errorMessage.password) {
-                              setModalTitle("Sign-up Failed");
-                              setModalMessage("Username and password didn't match. Please try again.");
-                         } else if (errorMessage.username) {
+                         if (errorMessage.username) {
                               setModalTitle("Sign-up Failed");
                               setModalMessage("A user with that username already exists.");
                          } else if (errorMessage.email) {
