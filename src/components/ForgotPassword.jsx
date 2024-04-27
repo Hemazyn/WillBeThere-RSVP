@@ -1,4 +1,6 @@
+/* eslint-disable no-unused-vars */
 import { useState } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import authbg from "../assets/auth_bg.png";
 import MailCheck from "./MailCheck";
@@ -8,18 +10,43 @@ const ForgotPassword = () => {
      const [email, setEmail] = useState("");
      const [showMailCheck, setShowMailCheck] = useState(false);
      const [isValidEmail, setIsValidEmail] = useState(false);
+     const [emailExists, setEmailExists] = useState(false);
 
-     const handleContinue = (e) => {
+     const handleContinue = async (e) => {
           e.preventDefault();
           console.log("Handle continue function called");
+          // const isValid = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email.trim());
           const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
           setIsValidEmail(isValid);
           if (isValid) {
-               setShowMailCheck(true);
-               console.log("Email is valid. Mail check will be shown.");
+               try {
+                    const emailExists = await checkIfEmailExists(email);
+                    setEmailExists(emailExists);
+                    if (emailExists) {
+                         console.log("Email exists.");
+                    } else {
+                         console.log("Email does not exist.");
+                    }
+                    setShowMailCheck(true);
+                    console.log("Mail check will be shown.");
+               } catch (error) {
+                    console.error("Error checking email existence:", error);
+               }
           } else {
                setShowMailCheck(false);
                console.log("Email is invalid. Mail check will not be shown.");
+          }
+     };
+
+
+     const checkIfEmailExists = async (email) => {
+          try {
+               const response = await axios.get(`https://will-be-there-auth-server.onrender.com/api/check-email?email=${email}`);
+               console.log("Response data:", response.data);
+               return response.data.exists;
+          } catch (error) {
+               console.error("Error checking email existence:", error);
+               throw error;
           }
      };
 
@@ -59,7 +86,6 @@ const ForgotPassword = () => {
                </div>
           </>
      )
-
 }
 
 export default ForgotPassword;

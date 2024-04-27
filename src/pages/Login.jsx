@@ -44,7 +44,7 @@ const Login = () => {
                <div className="h-screen flex flex-row">
                     <div className="h-full w-full md:w-md1 flex justify-center items-center">
                          <div className="h-fit w-full md:w-md2 flex flex-col justify-center gap-5 md:gap-10">
-                              <h1 className="font-normal text-md md:text-lg text-white font-Bayon text-center">Welcome to <span className="text-primary-default">Will Be There</span></h1>
+                              <h1 className="font-normal text-md md:text-lg text-white font-Bayon text-center lowercase">Welcome to <span className="text-primary-default">Will Be There</span></h1>
                               <form noValidate onSubmit={handleLogin} className="flex flex-col gap-5 md:gap-10">
                                    <div className="px-5 flex flex-col gap-5 md:gap-10">
                                         <div className="flex flex-col font-Bayon">

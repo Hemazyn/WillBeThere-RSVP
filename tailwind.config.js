@@ -48,6 +48,7 @@ export default {
     },
     fontFamily: {
       Bayon: ["Bayon", "sans-serif"],
+      Poppins: ["Poppins", "sans-serif"],
     }
   },
   plugins: [],

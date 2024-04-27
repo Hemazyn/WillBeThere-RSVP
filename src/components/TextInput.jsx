@@ -32,7 +32,7 @@ const TextInput = ({ type, name, placeholder, required, onInvalid, onInput }) =>
           <div className="relative">
                <input type={showPassword ? "text" : type} name={name} placeholder={placeholder} required={required} onInvalid={onInvalid} autoComplete="true" autoCapitalize="false"
                     onInput={(e) => { handleValidation(e); onInput && onInput(e); }}
-                    className="w-full flex text-primary-default text-sm md:text-base uppercase rounded-10 border border-white outline-none p-10 pr-12 placeholder:text-primary-default" />
+                    className="w-full flex text-primary-default font-Poppins text-sm md:text-base rounded-10 border border-white outline-none p-10 pr-12 placeholder:text-primary-default placeholder:normal-case" />
                {type === "password" && (
                     <button onClick={togglePasswordVisibility} type="button" className="absolute inset-y-0 right-0 flex items-center pe-4"  >
                          {showPassword ? (
