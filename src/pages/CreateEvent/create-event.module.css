@@ -1,0 +1,63 @@
+.wrapper {
+  display: grid;
+  gap: 40px;
+  align-items: center;
+  padding-inline: 15px;
+  padding-block-end: 15px;
+  margin-top: 30px;
+  color: #fff;
+
+  ::placeholder {
+    color: #a089d7;
+  }
+
+  button {
+    background-color: #c782f1;
+    border-radius: 10px;
+    padding: 10px;
+  }
+}
+
+.img {
+  width: 168px;
+  height: 277px;
+  background-color: #000;
+  border-radius: 10px;
+  justify-self: center;
+
+  @media screen and (min-width: 600px) {
+    & {
+      width: 320px;
+      height: 530px;
+    }
+  }
+}
+
+.form {
+  display: grid;
+  gap: 40px;
+
+  & > div:nth-of-type(1) input {
+    margin-block-end: 20px;
+  }
+
+  & > div input + span {
+    color: #a089d7;
+  }
+
+  h2 {
+    margin-block-end: 20px;
+  }
+
+  label {
+    display: inline-block;
+    margin-block: 10px;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .duration {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
