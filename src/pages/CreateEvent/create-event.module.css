@@ -10,12 +10,12 @@
   ::placeholder {
     color: #a089d7;
   }
+}
 
-  button {
-    background-color: #c782f1;
-    border-radius: 10px;
-    padding: 10px;
-  }
+.button {
+  background-color: #c782f1;
+  border-radius: 10px;
+  padding: 10px;
 }
 
 .img {
@@ -60,4 +60,13 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
+}
+
+.items > div {
+  width: min(100%, 500x);
+  margin-block-start: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
 }
