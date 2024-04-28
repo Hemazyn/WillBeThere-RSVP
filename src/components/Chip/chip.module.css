@@ -1,0 +1,30 @@
+.chip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #6f7949;
+  background-color: #6f7949;
+  min-width: 80px;
+  min-height: 35px;
+  border-radius: 16px;
+  padding: 10px;
+  border-radius: 30px;
+}
+
+.label {
+  margin-right: 4px;
+}
+
+.btn {
+  width: 12px;
+  height: 12px;
+  padding: 2px;
+  background-color: #000;
+  border-radius: 50%;
+  color: #33363f;
+
+  svg {
+    height: 100%;
+    width: 100%;
+  }
+}
