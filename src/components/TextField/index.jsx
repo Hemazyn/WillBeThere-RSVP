@@ -13,7 +13,7 @@ function TextField({ label, type, id, placeholder, icon, className, showLabel}){
     return (
         <div className={wrapperStyle}>
             <label htmlFor={id} className={showLabel ? "" : "visuallyhidden"}>{label}</label>
-            <input type={type} id={id} placeholder={placeholder} value={value} onChange={(e) => setValue(e.target.value)} />
+            <input type={type} id={id} placeholder={placeholder} value={value} className={icon && [styles.padleft]} onChange={(e) => setValue(e.target.value)} />
             {icon && <span>{icon}</span>}
         </div>
     )

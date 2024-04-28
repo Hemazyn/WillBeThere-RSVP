@@ -5,9 +5,9 @@ function TextArea({ label, id, placeholder, showLabel}){
     const [value, setValue] = useInput()
 
     return (
-        <div className={wrapperStyle}>
+        <div>
             <label htmlFor={id} className={showLabel ? "" : "visuallyhidden"}>{label}</label>
-            <textarea type={type} id={id} placeholder={placeholder} value={value} onChange={(e) => setValue(e.target.value)} />
+            <textarea id={id} placeholder={placeholder} value={value} onChange={(e) => setValue(e.target.value)} />
             </div>
     )
 }
