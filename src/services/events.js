@@ -17,4 +17,6 @@ const getEventById = (id) =>
       .catch((err) => reject({ error: err }));
   });
 
+const createEvent = (data) => {};
+
 export { getEvents, getEventById };
