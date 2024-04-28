@@ -46,6 +46,7 @@ textarea {
   padding: 10px;
   border-radius: 10px;
   width: min(100%, 500px);
+    color: #a089d7;
 }
 
 textarea {
