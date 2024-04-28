@@ -1,8 +1,26 @@
-@import url("https://fonts.googleapis.com/css2?family=Bayon&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Bayon&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+::-webkit-scrollbar {
+  @apply h-1 w-1;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary-default rounded;
+}
+
+body {
+  scrollbar-width: thin;
+  scrollbar-color: #a089d7;
+  scrollbar-track-color: transparent;
+}
 
 .main {
   background: linear-gradient(180deg, #140e1a 31.5%, #634480 100%);
@@ -15,7 +33,7 @@
 }
 
 html {
-  font-family: "Bayon";
+  font-family: 'Bayon';
 }
 
 button {
@@ -30,32 +48,19 @@ img {
   max-width: 100%;
 }
 
-.visuallyhidden {
-  border: 0;
-  clip: rect(0, 0, 0, 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-}
-
 input,
 textarea {
   padding: 10px;
   border-radius: 10px;
   width: min(100%, 500px);
-    color: #a089d7;
+  color: #a089d7;
 }
 
 textarea {
   min-height: 186px;
 }
 
-input[type="date"],
-input[type="time"] {
+input[type='date'],
+input[type='time'] {
   color: #a089d7;
 }
-
-

@@ -7,6 +7,13 @@
   margin-top: 30px;
   color: #fff;
 
+  @media screen and (min-width: 600px) {
+    & {
+      height: 90vh;
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
   ::placeholder {
     color: #a089d7;
   }
@@ -36,6 +43,15 @@
 .form {
   display: grid;
   gap: 40px;
+  width: min(100%, 500px);
+
+  @media screen and (min-width: 600px) {
+    & {
+      height: 70%;
+      padding-bottom: 30px;
+      overflow-y: scroll;
+    }
+  }
 
   & > div:nth-of-type(1) input {
     margin-block-end: 20px;
@@ -55,15 +71,7 @@
   }
 }
 
-@media screen and (min-width: 600px) {
-  .duration {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
 .items > div {
-  width: min(100%, 500x);
   margin-block-start: 20px;
   display: flex;
   align-items: center;

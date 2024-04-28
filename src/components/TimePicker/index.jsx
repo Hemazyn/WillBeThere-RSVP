@@ -1,22 +1,30 @@
-import useInput from "../../hooks/useInput"
-import PropTypes from "prop-types"
-import styles from "./time-picker.module.css"
+import PropTypes from 'prop-types';
+import useInput from '../../hooks/useInput';
+import styles from './time-picker.module.css';
 
-function TimePicker({label, icon}){
-    const [selectedTime, setSelectedTime] = useInput()
+function TimePicker({ label, icon }) {
+  const [selectedTime, setSelectedTime] = useInput();
 
-    return (
-        <div className={styles.wrapper}>
-            <label htmlFor="timePicker">{label}</label>
-            <input type="time" id="timePicker" value={selectedTime} className={icon && [styles.padleft]} onChange={(e) => setSelectedTime(e.target.value)} />
-            {icon && <span>{icon}</span>}
-        </div>
-    )
+  return (
+    <div className={styles.wrapper}>
+      <label htmlFor="timePicker" className="block w-full">
+        {label}
+      </label>
+      <input
+        type="time"
+        id="timePicker"
+        value={selectedTime}
+        className={icon && [styles.padleft]}
+        onChange={(e) => setSelectedTime(e.target.value)}
+      />
+      {icon && <span>{icon}</span>}
+    </div>
+  );
 }
 
-export default TimePicker
+export default TimePicker;
 
 TimePicker.propTypes = {
-    label: PropTypes.string.isRequired,
-    icon: PropTypes.element,
-}
+  label: PropTypes.string.isRequired,
+  icon: PropTypes.element,
+};
