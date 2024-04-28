@@ -1,19 +1,18 @@
 import clsx from "clsx";
-import useInput from "../../hooks/useInput";
 import PropTypes from "prop-types"
 import styles from "./text-field.module.css"
 
-function TextField({ label, type, id, placeholder, icon, className, showLabel}){
-    const [value, setValue] = useInput()
+function TextField({ label, id, icon, className, showLabel, ...others}){
 
     const wrapperStyle = clsx({
         [styles.wrapper]: true,
         [className]: className
     })
+
     return (
         <div className={wrapperStyle}>
             <label htmlFor={id} className={showLabel ? "" : "visuallyhidden"}>{label}</label>
-            <input type={type} id={id} placeholder={placeholder} value={value} className={icon && [styles.padleft]} onChange={(e) => setValue(e.target.value)} />
+            <input id={id} className={icon && [styles.padleft]} {...others} />
             {icon && <span>{icon}</span>}
         </div>
     )
