@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bayon&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bayon&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -26,7 +26,35 @@ button {
 }
 
 img {
-    border-radius: inherit;
-    max-width: 100%;
-  }
+  border-radius: inherit;
+  max-width: 100%;
+}
+
+.visuallyhidden {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+input,
+textarea {
+  padding: 10px;
+  border-radius: 10px;
+  width: min(100%, 500px);
+}
+
+textarea {
+  min-height: 186px;
+}
+
+input[type="date"],
+input[type="time"] {
+  color: #a089d7;
+}
+
 
