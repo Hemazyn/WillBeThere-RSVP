@@ -33,6 +33,7 @@ function CreateEvent() {
   return (
     <section className={styles.wrapper}>
       <div className={styles.img}></div>
+        <div className={styles.container}>
       <form className={styles.form}>
         <div className={styles.about}>
           <h2>About Event</h2>
@@ -78,7 +79,10 @@ function CreateEvent() {
             />
           </div>
         </div>
-        <div className={styles.items}>
+        
+      </form>
+       {/* This is outside the form element to avoid the default form behaviour when the "Enter" key is pressed  */}
+       <div>
           <h2>other</h2>
           <TextField
             type="text"
@@ -90,19 +94,20 @@ function CreateEvent() {
             onChange={(e) => setValue(e.target.value)}
             onKeyDown={(e) => addItem(e)}
           />
-          <div>
+         <div className={styles.chips}>
             {items.map((item, i) => (
               <Chip key={item} label={item} onDelete={() => removeItem(i)} />
             ))}
           </div>
         </div>
-        <Button
+        
+      </div>
+      <Button
           className={styles.button}
           onClick={() => navigate('app/event/create/preview')}
         >
           continue
         </Button>
-      </form>
     </section>
   );
 }
