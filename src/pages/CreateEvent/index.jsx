@@ -5,7 +5,7 @@ import {
   faPlusCircle,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Loading, Notify } from 'notiflix';
+import { Loading, Notify, Report } from 'notiflix';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -33,7 +33,8 @@ function CreateEvent() {
     } else setPreviewImage('');
   }, [eventImage]);
 
-  const { create, isPending, isError, isSuccess, error } = useCreateEvent();
+  const { create, isPending, isError, isSuccess, error, data } =
+    useCreateEvent();
   const [newItem, setNewItem] = useState('');
 
   const navigate = useNavigate();
@@ -124,10 +125,24 @@ function CreateEvent() {
   useEffect(() => {
     if (isSuccess) {
       console.log('Returned data');
-      Notify.success('Event created successfully');
+
+      Report.success(
+        'Event created successfully',
+        `<p>Here's your event link</p> <br />
+         <p>${window.location.href}/${data?.id}</p>
+         `,
+        'Copy',
+        () => {
+          navigator.clipboard.writeText(window.location.href + '/' + data?.id);
+        },
+        {
+          plainText: false,
+          backOverlayClickToClose: true,
+        }
+      );
       navigate('/dashboard/profile');
     }
-  }, [navigate, isSuccess]);
+  }, [navigate, isSuccess, data?.id]);
 
   useEffect(() => {
     if (isPending) Loading.hourglass();
