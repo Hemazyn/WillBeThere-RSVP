@@ -1,0 +1,14 @@
+.wrapper {
+  position: relative;
+
+  span {
+    position: absolute;
+    left: 10px;
+    top: 60%;
+    color: #000;
+  }
+}
+
+.padleft {
+  padding-inline-start: 35px !important;
+}
