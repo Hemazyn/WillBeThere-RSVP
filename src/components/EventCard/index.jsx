@@ -21,7 +21,7 @@ function EventCard({ event }) {
 
   return (
     <article className={styles.card}>
-      <div
+      <button
         className={styles.bookmark}
         onClick={() => {
           const bookmarks = JSON.parse(
@@ -44,7 +44,7 @@ function EventCard({ event }) {
         ) : (
           <FontAwesomeIcon icon={notBookmarked} />
         )}
-      </div>
+      </button>
       <img src={event.image} className="w-full h-full" alt="" />
       <div className={styles.details}>
         <h2 className="text-white">
