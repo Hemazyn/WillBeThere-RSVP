@@ -15,7 +15,6 @@ const ForgotPassword = () => {
      const handleContinue = async (e) => {
           e.preventDefault();
           console.log("Handle continue function called");
-          // const isValid = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email.trim());
           const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
           setIsValidEmail(isValid);
           if (isValid) {
