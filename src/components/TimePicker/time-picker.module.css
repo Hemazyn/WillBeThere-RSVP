@@ -10,5 +10,5 @@
 }
 
 .padleft {
-  padding-inline-start: 35px;
+  padding-inline-start: 35px !important;
 }

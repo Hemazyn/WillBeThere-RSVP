@@ -2,24 +2,44 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import styles from './text-field.module.css';
 
-function TextField({ label, id, icon, className, showLabel, ...others }) {
-  const wrapperStyle = clsx({
-    [styles.wrapper]: true,
-    [className]: className,
-  });
-
+function TextField({
+  label,
+  id,
+  icon,
+  className,
+  showLabel,
+  required,
+  error,
+  ...rest
+}) {
   return (
-    <div className={wrapperStyle}>
+    <div className={clsx(className, styles.wrapper)}>
       <label htmlFor={id} className={showLabel ? '' : 'sr-only'}>
-        {label}
+        {label} {required && <span className="text-red">*</span>}
       </label>
-      <input id={id} className={icon && [styles.padleft]} {...others} />
-      {icon && <span>{icon}</span>}
+      <div className="w-full relative">
+        <input
+          id={id}
+          className={`${className} ${icon ? [styles.padleft] : ''}`}
+          required={required}
+          {...rest}
+        />
+        {icon && <span className={styles.icon}>{icon}</span>}
+      </div>
+      {error && (
+        <span className="text-red text-xs text-end -mt-2 w-full inline-block">
+          {error}
+        </span>
+      )}
     </div>
   );
 }
 
 export default TextField;
+
+TextField.defaultProps = {
+  required: false,
+};
 
 TextField.propTypes = {
   label: PropTypes.string.isRequired,
@@ -27,6 +47,8 @@ TextField.propTypes = {
   id: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
   icon: PropTypes.element,
-  className: PropTypes.object,
+  className: PropTypes.string,
   showLabel: PropTypes.bool,
+  error: PropTypes.string,
+  required: PropTypes.bool,
 };

@@ -17,7 +17,7 @@ function Nav() {
   return (
     <nav className={styles.nav}>
       <div className={styles.logo}>
-        <Link to="/">will be there</Link>
+        <Link to="/dashboard">will be there</Link>
       </div>
       <div className={styles.input}>
         <input
@@ -40,10 +40,10 @@ function Nav() {
             onClick={() => setIsMenuVisible(!isMenuVisible)}
           />
         </Button>
-        <Button as="Link" to="/app/event/create">
+        <Button as="Link" to="/dashboard/event/create">
           <FontAwesomeIcon icon={faCirclePlus} />
         </Button>
-        <Button className={styles.profile} as="Link" to="/app/profile">
+        <Button className={styles.profile} as="Link" to="/dashboard/profile">
           <Avatar className={styles.avatar} />
         </Button>
       </div>

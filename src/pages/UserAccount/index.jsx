@@ -35,7 +35,7 @@ function UserAccount() {
       <section className={styles.events}>
         <header>
           <p>Events</p>
-          <Button as="Link" to="/app/event/create">
+          <Button as="Link" to="/dashboard/event/create">
             <span>Add Event</span>
             <FontAwesomeIcon icon={faPlus} />
           </Button>

@@ -1,9 +1,11 @@
 .chip {
   display: flex;
+  font-size: small;
   align-items: center;
   justify-content: space-between;
   border: 1px solid #6f7949;
   background-color: #6f7949;
+  width: fit-content;
   min-width: 80px;
   min-height: 35px;
   border-radius: 16px;

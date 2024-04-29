@@ -39,9 +39,9 @@ export default {
       borderRadius: {
         10: '10px',
       },
-    },
-    fontFamily: {
-      Bayon: ['Bayon', 'sans-serif'],
+      fontFamily: {
+        Bayon: ['Bayon', 'sans-serif'],
+      },
     },
   },
   plugins: [],
