@@ -1,25 +1,26 @@
-import styles from "./sub-menu.module.css";
-import Button from "../Button";
-import { useContext } from "react";
-import { EventContext } from "../../contexts/eventContext";
-import moment from "moment";
+import moment from 'moment';
+import { useContext } from 'react';
+import { EventContext } from '../../contexts/EventContext';
+import Button from '../Button';
+import styles from './sub-menu.module.css';
 
 function SubMenu() {
-  const { events, filteredEvents, setFilteredEvents } = useContext(EventContext);
+  const { events, filteredEvents, setFilteredEvents } =
+    useContext(EventContext);
 
   const handleFilter = (e) => {
     switch (e.target.name) {
-      case "any":
+      case 'any':
         setFilteredEvents(events);
         break;
-      case "today":
+      case 'today':
         setFilteredEvents(
           events.filter(
             (event) => moment(event.date).dayOfYear() === moment().dayOfYear()
           )
         );
         break;
-      case "tomorrow":
+      case 'tomorrow':
         setFilteredEvents(
           events.filter(
             (event) =>
@@ -27,14 +28,14 @@ function SubMenu() {
           )
         );
         break;
-      case "this":
+      case 'this':
         setFilteredEvents(
           events.filter(
             (event) => moment(event.date).week() === moment().week()
           )
         );
         break;
-      case "next":
+      case 'next':
         setFilteredEvents(
           events.filter(
             (event) =>
@@ -48,19 +49,19 @@ function SubMenu() {
   };
   return (
     <div className={styles.wrapper}>
-      <Button as={"Link"} to="/app/" name="any" onClick={handleFilter}>
+      <Button as={'Link'} to="/app/" name="any" onClick={handleFilter}>
         any day
       </Button>
-      <Button as={"Link"} to="/app/" name="today" onClick={handleFilter}>
+      <Button as={'Link'} to="/app/" name="today" onClick={handleFilter}>
         today
       </Button>
-      <Button as={"Link"} to="/app/" name="tomorrow" onClick={handleFilter}>
+      <Button as={'Link'} to="/app/" name="tomorrow" onClick={handleFilter}>
         tomorrow
       </Button>
-      <Button as={"Link"} to="/app/" name="this" onClick={handleFilter}>
+      <Button as={'Link'} to="/app/" name="this" onClick={handleFilter}>
         this week
       </Button>
-      <Button as={"Link"} to="/app/" name="next" onClick={handleFilter}>
+      <Button as={'Link'} to="/app/" name="next" onClick={handleFilter}>
         next week
       </Button>
       <div className={styles.sort}>
@@ -71,7 +72,7 @@ function SubMenu() {
           id="date"
           onChange={(e) => {
             if (e.target.checked) {
-              setFilteredEvents(filteredEvents.sort((a, b) => a.date - b.date))
+              setFilteredEvents(filteredEvents.sort((a, b) => a.date - b.date));
             }
           }}
         />
