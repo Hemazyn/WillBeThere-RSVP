@@ -2,21 +2,24 @@ import {
   faCirclePlus,
   faMagnifyingGlass,
   faSliders,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState, useContext } from "react";
-import { Link } from "react-router-dom";
-import Avatar from "../Avatar";
-import Button from "../Button";
-import SubMenu from "../SubMenu";
-import styles from "./nav.module.css";
-import { EventContext } from "../../contexts/eventContext";
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { EventContext } from '../../contexts/EventContext';
+import Avatar from '../Avatar';
+import Button from '../Button';
+import SubMenu from '../SubMenu';
+import styles from './nav.module.css';
 
 function Nav() {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
-  const { events, setFilteredEvents } = useContext(EventContext);
+  const { events, setIsFiltered, setFilteredEvents } = useContext(EventContext);
 
   const handleSearch = (e) => {
+    if (!e.target.value) setIsFiltered(false);
+    else setIsFiltered(true);
+
     setFilteredEvents(
       events.filter(
         (event) =>

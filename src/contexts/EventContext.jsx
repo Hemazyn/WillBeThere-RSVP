@@ -5,15 +5,15 @@ const EventContext = createContext();
 
 const EventProvider = ({ children }) => {
   const [filteredEvents, setFilteredEvents] = useState([]);
-  const [filterText, setFilterText] = useState('');
+  const [isFiltered, setIsFiltered] = useState(false);
   const { data: events, isPending: isLoading, isError, error } = useGetEvents();
 
   return (
     <EventContext.Provider
       value={{
         events,
-        filterText,
-        setFilterText,
+        isFiltered,
+        setIsFiltered,
         filteredEvents,
         setFilteredEvents,
         isLoading,

@@ -5,7 +5,7 @@ import { useEventContext } from '../../contexts/EventContext';
 import styles from './browse.module.css';
 
 const Browse = () => {
-  const { events, filterText, filteredEvents, isLoading, isError, error } =
+  const { events, isFiltered, filteredEvents, isLoading, isError, error } =
     useEventContext();
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const Browse = () => {
   return (
     !isLoading && (
       <div className={styles.wrapper}>
-        {filterText &&
+        {isFiltered &&
           (!filteredEvents || filteredEvents.length === 0 ? (
             <h1 className="text-white text-4xl">No event matches the filter</h1>
           ) : (
@@ -32,7 +32,7 @@ const Browse = () => {
               <EventCard key={event.id} event={event} />
             ))
           ))}
-        {!filterText &&
+        {!isFiltered &&
           (!events || events.length === 0 ? (
             <h1 className="text-white text-4xl">
               No event to display at the moment. Please check again later.

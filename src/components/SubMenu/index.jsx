@@ -5,14 +5,15 @@ import Button from '../Button';
 import styles from './sub-menu.module.css';
 
 function SubMenu() {
-  const { events, setFilterText, filteredEvents, setFilteredEvents } =
+  const { events, setIsFiltered, filteredEvents, setFilteredEvents } =
     useContext(EventContext);
 
   const handleFilter = (e) => {
-    setFilterText(e.target.name);
+    setIsFiltered(true);
 
     switch (e.target.name) {
       case '':
+        setIsFiltered(false);
         setFilteredEvents(events);
         break;
       case 'today':
