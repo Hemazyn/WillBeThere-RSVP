@@ -5,12 +5,14 @@ import Button from '../Button';
 import styles from './sub-menu.module.css';
 
 function SubMenu() {
-  const { events, filteredEvents, setFilteredEvents } =
+  const { events, setFilterText, filteredEvents, setFilteredEvents } =
     useContext(EventContext);
 
   const handleFilter = (e) => {
+    setFilterText(e.target.name);
+
     switch (e.target.name) {
-      case 'any':
+      case '':
         setFilteredEvents(events);
         break;
       case 'today':
@@ -49,19 +51,19 @@ function SubMenu() {
   };
   return (
     <div className={styles.wrapper}>
-      <Button as={'Link'} to="/app/" name="any" onClick={handleFilter}>
+      <Button name="" onClick={handleFilter}>
         any day
       </Button>
-      <Button as={'Link'} to="/app/" name="today" onClick={handleFilter}>
+      <Button name="today" onClick={handleFilter}>
         today
       </Button>
-      <Button as={'Link'} to="/app/" name="tomorrow" onClick={handleFilter}>
+      <Button name="tomorrow" onClick={handleFilter}>
         tomorrow
       </Button>
-      <Button as={'Link'} to="/app/" name="this" onClick={handleFilter}>
+      <Button name="this" onClick={handleFilter}>
         this week
       </Button>
-      <Button as={'Link'} to="/app/" name="next" onClick={handleFilter}>
+      <Button name="next" onClick={handleFilter}>
         next week
       </Button>
       <div className={styles.sort}>
