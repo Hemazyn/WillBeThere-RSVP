@@ -1,5 +1,5 @@
 # WillBeThere Event Management System
-WillBeThere is an intuitive event management system designed to simplify event organization while enhancing attendee engagement. With a focus on user convenience and robust features, WillBeThere empowers both event organizers and attendees to create and participate in memorable events seamlessly.
+Welcome to the repository for WillBeThere, an intuitive online RSVP service designed to simplify event organization and attendance tracking. With WillBeThere, registered users can effortlessly create events, share event links with friends, and easily manage RSVPs to ensure smooth event coordination. Whether you're hosting a small gathering or a large-scale event, WillBeThere provides the tools you need to streamline the planning process and enhance attendee engagement. Join us in revolutionizing event management with WillBeThere!
 ### Screenshot
 ![](/src/assets/preview.png)
 ## Key Features
@@ -45,7 +45,6 @@ WillBeThere is an intuitive event management system designed to simplify event o
 Users can register using:
 - Email and password
 - Google
-- Facebook
 ### Integrations
 - Cloudinary: Image upload for event images and attendee photo uploads.
 - Email Service Provider: Sending event details and reminders via email.
@@ -64,6 +63,8 @@ Set up the backend and database according to deployment instructions.
 Configure authentication providers.
 Run the frontend and backend locally for development.
 ## Contributors
+- Abdulbasit Abdullahi: [Github repository](https://github.com/bibhestee)
+- Aaliyah Junaid: [Github repository](https://github.com/Leeyah-123)
 - Emmanuel Tofunmi: [Github repository](https://github.com/Hemazyn)
 - Andrew Ezeani: [Github repository](https://github.com/ezeaniiandrew)
 ## Acknowledgments
