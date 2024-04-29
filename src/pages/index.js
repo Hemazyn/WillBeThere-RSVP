@@ -8,4 +8,4 @@ export { default as ResetPassword } from './ResetPassword';
 export { default as ResetPasswordSuccess } from './ResetPasswordSuccess';
 export { default as SignUp } from './SignUp';
 export { default as UserAccount } from './UserAccount';
-
+export { default as EventPreview } from "./EventPreview"

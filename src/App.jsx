@@ -5,6 +5,7 @@ import {
   Browse,
   CreateEvent,
   EventPage,
+  EventPreview,
   ForgotPassword,
   LandingPage,
   Login,
@@ -21,6 +22,7 @@ function App() {
         <Route index element={<Browse />} />
         <Route path="event">
           <Route path="create" element={<CreateEvent />} />
+          <Route path='preview' element={<EventPreview />} />
           <Route path=":id" element={<EventPage />} />
         </Route>
         <Route path="profile" element={<UserAccount />} />
