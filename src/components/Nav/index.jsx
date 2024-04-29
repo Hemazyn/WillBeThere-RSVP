@@ -2,17 +2,33 @@ import {
   faCirclePlus,
   faMagnifyingGlass,
   faSliders,
-} from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import Avatar from '../Avatar';
-import Button from '../Button';
-import SubMenu from '../SubMenu';
-import styles from './nav.module.css';
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState, useContext } from "react";
+import { Link } from "react-router-dom";
+import Avatar from "../Avatar";
+import Button from "../Button";
+import SubMenu from "../SubMenu";
+import styles from "./nav.module.css";
+import { EventContext } from "../../contexts/eventContext";
 
 function Nav() {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
+  const { events, setFilteredEvents } = useContext(EventContext);
+
+  const handleSearch = (e) => {
+    setFilteredEvents(
+      events.filter(
+        (event) =>
+          event.name.toLowerCase().includes(e.target.value.toLowerCase()) ||
+          event.description
+            .toLowerCase()
+            .includes(e.target.value.toLowerCase()) ||
+          event.type.toLowerCase().includes(e.target.value.toLowerCase()) ||
+          event.location.toLowerCase().includes(e.target.value.toLowerCase())
+      )
+    );
+  };
 
   return (
     <nav className={styles.nav}>
@@ -25,6 +41,7 @@ function Nav() {
           name="search event"
           id="sd"
           placeholder="search for events"
+          onChange={handleSearch}
         />
         <span>
           <FontAwesomeIcon icon={faMagnifyingGlass} />
