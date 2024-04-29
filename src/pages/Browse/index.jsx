@@ -1,42 +1,45 @@
 import { Loading, Notify } from 'notiflix';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { EventCard } from '../../components';
-import { getEvents } from '../../services/events';
+import { useEventContext } from '../../contexts/EventContext';
 import styles from './browse.module.css';
 
 const Browse = () => {
-  const [events, setEvents] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const { events, isFiltered, filteredEvents, isLoading, isError, error } =
+    useEventContext();
 
   useEffect(() => {
-    Loading.hourglass();
+    if (isLoading) Loading.hourglass();
+    else Loading.remove();
+  }, [isLoading]);
 
-    getEvents()
-      .then(({ response }) => {
-        setEvents(response);
-      })
-      .catch(() => {
-        Notify.failure(
-          'Unable to fetch events at this time, please try again later'
-        );
-      })
-      .finally(() => {
-        setIsLoading(false);
-        Loading.remove();
-      });
-  }, []);
+  useEffect(() => {
+    if (isError) {
+      Notify.failure(
+        error?.response?.data?.message || 'Unable to fetch events'
+      );
+    }
+  }, [error?.response?.data?.message, isError]);
 
   return (
     !isLoading && (
       <div className={styles.wrapper}>
-        {events.length === 0 ? (
-          <h1 className="text-white text-4xl">
-            No event to display at the moment
-          </h1>
-        ) : (
-          events.map((event) => <EventCard key={event.id} event={event} />)
-        )}
-
+        {isFiltered &&
+          (!filteredEvents || filteredEvents.length === 0 ? (
+            <h1 className="text-white text-4xl">No event matches the filter</h1>
+          ) : (
+            filteredEvents.map((event) => (
+              <EventCard key={event.id} event={event} />
+            ))
+          ))}
+        {!isFiltered &&
+          (!events || events.length === 0 ? (
+            <h1 className="text-white text-4xl">
+              No event to display at the moment. Please check again later.
+            </h1>
+          ) : (
+            events.map((event) => <EventCard key={event.id} event={event} />)
+          ))}
       </div>
     )
   );

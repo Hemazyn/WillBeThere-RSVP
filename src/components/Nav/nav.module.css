@@ -34,7 +34,7 @@
         padding: 10px;
         border-radius: 10px;
         width: min(100%, 500px);
-        padding-inline-start: 35px;
+        padding-inline-start: 35px !important;
       }
 
       span {

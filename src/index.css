@@ -24,12 +24,8 @@ body {
 
 .main {
   background: linear-gradient(180deg, #140e1a 31.5%, #634480 100%);
-  width: 100%;
   min-height: 100dvh;
   display: grid;
-  grid-template-areas:
-    header
-    main;
 }
 
 html {
@@ -54,6 +50,16 @@ textarea {
   border-radius: 10px;
   width: min(100%, 500px);
   color: #a089d7;
+}
+
+input:not([type='datetime-local']),
+textarea {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; /* TODO: Change to Poppins */
+}
+
+input::placeholder,
+textarea::placeholder {
+  font-family: 'Bayon';
 }
 
 textarea {

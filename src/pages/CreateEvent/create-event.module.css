@@ -33,11 +33,24 @@
 }
 
 .img {
+  position: relative;
+  cursor: pointer;
   width: 168px;
   height: 277px;
   background-color: #000;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
   border-radius: 10px;
   justify-self: center;
+
+  & > span {
+    display: none;
+  }
+
+  &:is(:hover, :focus-visible) > span {
+    display: block;
+  }
 
   @media screen and (min-width: 600px) {
     & {
@@ -74,6 +87,10 @@
 
   & > div input + span {
     color: #a089d7;
+  }
+
+  h2 {
+    margin-block-end: 10px;
   }
 
   label {

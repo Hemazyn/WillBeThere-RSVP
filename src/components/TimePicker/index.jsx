@@ -1,10 +1,7 @@
 import PropTypes from 'prop-types';
-import useInput from '../../hooks/useInput';
 import styles from './time-picker.module.css';
 
-function TimePicker({ label, icon }) {
-  const [selectedTime, setSelectedTime] = useInput();
-
+function TimePicker({ label, icon, ...rest }) {
   return (
     <div className={styles.wrapper}>
       <label htmlFor="timePicker" className="block w-full">
@@ -13,9 +10,8 @@ function TimePicker({ label, icon }) {
       <input
         type="time"
         id="timePicker"
-        value={selectedTime}
         className={icon && [styles.padleft]}
-        onChange={(e) => setSelectedTime(e.target.value)}
+        {...rest}
       />
       {icon && <span>{icon}</span>}
     </div>
