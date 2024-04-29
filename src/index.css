@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bayon&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bayon&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -33,7 +33,7 @@ body {
 }
 
 html {
-  font-family: 'Bayon';
+  font-family: "Bayon";
 }
 
 button {
@@ -48,7 +48,7 @@ img {
   max-width: 100%;
 }
 
-input:not([type='checkbox']):not([type='radio']),
+input:not([type="checkbox"]):not([type="radio"]),
 textarea {
   padding: 10px;
   border-radius: 10px;
@@ -60,7 +60,7 @@ textarea {
   min-height: 186px;
 }
 
-input[type='date'],
-input[type='time'] {
+input[type="date"],
+input[type="time"] {
   color: #a089d7;
 }

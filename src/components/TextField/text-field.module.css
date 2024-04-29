@@ -1,15 +1,15 @@
 .wrapper {
-    position: relative;
+  position: relative;
 
-    span {
-        position: absolute;
-        left: 10px;
-        top: 50%;
-        transform: translateY(-50%);
-        color: #000;
-    }
+  span {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #000;
+  }
 }
 
 .padleft {
-    padding-inline-start: 35px;
+  padding-inline-start: 35px;
 }

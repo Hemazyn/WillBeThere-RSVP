@@ -6,10 +6,11 @@
   padding-block-end: 15px;
   margin-top: 30px;
   color: #fff;
+  width: 100%;
+  max-width: 720px;
 
   @media screen and (min-width: 600px) {
     & {
-      height: 90vh;
       grid-template-columns: 1fr 1fr;
     }
   }
@@ -17,12 +18,18 @@
   ::placeholder {
     color: #a089d7;
   }
+
+  h2 {
+    margin-block-end: 20px;
+    font-size: calc(24 / 16 * 1rem);
+  }
 }
 
 .button {
   background-color: #c782f1;
   border-radius: 10px;
   padding: 10px;
+  grid-column: 1/-1;
 }
 
 .img {
@@ -40,19 +47,26 @@
   }
 }
 
-.form {
+.container {
   display: grid;
-  gap: 40px;
   width: min(100%, 500px);
+  gap: 40px;
 
   @media screen and (min-width: 600px) {
     & {
-      height: 70%;
-      padding-inline: 5px;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      height: 530px;
       padding-bottom: 30px;
       overflow-y: scroll;
     }
   }
+}
+
+.form {
+  display: grid;
+  gap: 40px;
 
   & > div:nth-of-type(1) input {
     margin-block-end: 20px;
@@ -62,20 +76,24 @@
     color: #a089d7;
   }
 
-  h2 {
-    margin-block-end: 20px;
-  }
-
   label {
     display: inline-block;
     margin-block: 10px;
   }
 }
 
-.items > div {
+.chips {
   margin-block-start: 20px;
   display: flex;
   align-items: center;
   gap: 10px;
   flex-wrap: wrap;
+}
+
+@media screen and (min-width: 600px) {
+  .duration {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
 }

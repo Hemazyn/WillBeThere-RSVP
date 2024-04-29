@@ -6,4 +6,7 @@
 .main {
   grid-area: main;
   padding-block-start: 60px;
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
 }
