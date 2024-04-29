@@ -10,6 +10,18 @@ import styles from './event-card.module.css';
 function EventCard({ event }) {
   const [isBookmarked, setIsBookmarked] = useState(false);
 
+  const bookmarkEvent = () => {
+    const bookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]');
+    if (!isBookmarked) {
+      bookmarks.push(event);
+      localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+    } else {
+      const newBookmarks = bookmarks.filter((item) => item.id !== event.id);
+      localStorage.setItem('bookmarks', JSON.stringify(newBookmarks));
+    }
+    setIsBookmarked(!isBookmarked);
+  };
+
   useEffect(() => {
     const storedBookmarks = JSON.parse(
       localStorage.getItem('bookmarks') || '[]'
@@ -21,24 +33,7 @@ function EventCard({ event }) {
 
   return (
     <article className={styles.card}>
-      <button
-        className={styles.bookmark}
-        onClick={() => {
-          const bookmarks = JSON.parse(
-            localStorage.getItem('bookmarks') || '[]'
-          );
-          if (!isBookmarked) {
-            bookmarks.push(event);
-            localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
-          } else {
-            const newBookmarks = bookmarks.filter(
-              (item) => item.id !== event.id
-            );
-            localStorage.setItem('bookmarks', JSON.stringify(newBookmarks));
-          }
-          setIsBookmarked(!isBookmarked);
-        }}
-      >
+      <button className={styles.bookmark} onClick={bookmarkEvent}>
         {isBookmarked ? (
           <FontAwesomeIcon icon={faBookmark} />
         ) : (
