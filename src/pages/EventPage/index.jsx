@@ -1,32 +1,23 @@
 import moment from 'moment';
 import { Loading, Notify } from 'notiflix';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { getEventById } from '../../services/events';
+import { useGetEvent } from '../../services/events';
 
 const EventPage = () => {
   const { id } = useParams();
-
-  const [isLoading, setIsLoading] = useState(true);
-  const [event, setEvent] = useState(null);
+  const { data: event, isPending: isLoading, isError, error } = useGetEvent(id);
 
   useEffect(() => {
-    Loading.hourglass();
+    if (isLoading) Loading.hourglass();
+    else Loading.remove();
+  }, [isLoading]);
 
-    getEventById(id)
-      .then(({ response }) => {
-        setEvent(response);
-      })
-      .catch(() => {
-        Notify.failure(
-          'Unable to fetch this event at this time, please try again later'
-        );
-      })
-      .finally(() => {
-        setIsLoading(false);
-        Loading.remove();
-      });
-  }, [id]);
+  useEffect(() => {
+    if (isError) {
+      Notify.failure(error?.response?.data?.message || 'Unable to fetch event');
+    }
+  }, [error?.response?.data?.message, isError]);
 
   return (
     <>

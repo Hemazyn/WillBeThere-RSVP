@@ -4,18 +4,32 @@
 @tailwind components;
 @tailwind utilities;
 
+::-webkit-scrollbar {
+  @apply h-1 w-1;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary-default rounded;
+}
+
+body {
+  scrollbar-width: thin;
+  scrollbar-color: #a089d7;
+  scrollbar-track-color: transparent;
+}
+
 .main {
   background: linear-gradient(180deg, #140e1a 31.5%, #634480 100%);
-  width: 100%;
   min-height: 100dvh;
   display: grid;
-  grid-template-areas:
-    header
-    main;
 }
 
 html {
-  font-family: "Bayon";
+  font-family: 'Bayon';
 }
 
 button {
@@ -26,7 +40,28 @@ button {
 }
 
 img {
-    border-radius: inherit;
-    max-width: 100%;
-  }
+  border-radius: inherit;
+  max-width: 100%;
+}
 
+input:not([type='checkbox']):not([type='radio']),
+textarea {
+  padding: 10px;
+  border-radius: 10px;
+  width: min(100%, 500px);
+  color: #a089d7;
+}
+
+input:not([type='datetime-local']),
+textarea {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; /* TODO: Change to Poppins */
+}
+
+input::placeholder,
+textarea::placeholder {
+  font-family: 'Bayon';
+}
+
+textarea {
+  min-height: 186px;
+}
