@@ -15,7 +15,7 @@ export const useLogin = () => {
 
       localStorage.setItem('token', res.data.token);
 
-      res = await axios.get('/profile', {
+      res = await axios.get('/profile/', {
         headers: {
           'Content-Type': 'application/json',
         },
