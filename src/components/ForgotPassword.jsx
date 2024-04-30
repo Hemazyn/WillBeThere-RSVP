@@ -1,10 +1,12 @@
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import Notiflix from "notiflix";
 import authbg from "../assets/auth_bg.png";
 import MailCheck from "./MailCheck";
 import TextInput from "./TextInput";
+import { FiArrowLeft } from "react-icons/fi";
 
 const ForgotPassword = () => {
      const [email, setEmail] = useState("");
@@ -14,7 +16,7 @@ const ForgotPassword = () => {
 
      const handleContinue = async (e) => {
           e.preventDefault();
-          console.log("Handle continue function called");
+          Notiflix.Notify.sucess("Handle continue function called");
           const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
           setIsValidEmail(isValid);
           if (isValid) {
@@ -22,18 +24,18 @@ const ForgotPassword = () => {
                     const emailExists = await checkIfEmailExists(email);
                     setEmailExists(emailExists);
                     if (emailExists) {
-                         console.log("Email exists.");
+                         Notiflix.Notify.sucess("Email exists.");
                     } else {
-                         console.log("Email does not exist.");
+                         Notiflix.Notify.failure("Email does not exist.");
                     }
                     setShowMailCheck(true);
-                    console.log("Mail check will be shown.");
+                    Notiflix.Notify.sucess("Mail check will be shown.");
                } catch (error) {
-                    console.error("Error checking email existence:", error);
+                    Notiflix.Notify.failure("Error checking email existence:", error);
                }
           } else {
                setShowMailCheck(false);
-               console.log("Email is invalid. Mail check will not be shown.");
+               Notiflix.Notify.failure("Email is invalid. Mail check will not be shown.");
           }
      };
 
@@ -41,10 +43,10 @@ const ForgotPassword = () => {
      const checkIfEmailExists = async (email) => {
           try {
                const response = await axios.get(`https://will-be-there-auth-server.onrender.com/api/check-email?email=${email}`);
-               console.log("Response data:", response.data);
+               Notiflix.Notify.sucess("Response data:", response.data);
                return response.data.exists;
           } catch (error) {
-               console.error("Error checking email existence:", error);
+               Notiflix.Notify.failure("Error checking email existence:", error);
                throw error;
           }
      };
@@ -54,9 +56,7 @@ const ForgotPassword = () => {
                <div className="h-screen flex flex-row">
                     <div className="h-full w-full md:w-md1 flex justify-center items-center">
                          <Link to="/auth/login" className="absolute top-5 left-5">
-                              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                   <path d="M5 12L4.29289 11.2929L3.58579 12L4.29289 12.7071L5 12ZM17 13C17.5523 13 18 12.5523 18 12C18 11.4477 17.5523 11 17 11V13ZM8.29289 7.29289L4.29289 11.2929L5.70711 12.7071L9.70711 8.70711L8.29289 7.29289ZM4.29289 12.7071L8.29289 16.7071L9.70711 15.2929L5.70711 11.2929L4.29289 12.7071ZM5 13H17V11H5V13Z" fill="white" />
-                              </svg>
+                              <FiArrowLeft size={20} className="text-white" />
                          </Link>
                          <div className="h-4/5 w-full lg:w-md2 flex flex-col">
                               {isValidEmail && showMailCheck && (

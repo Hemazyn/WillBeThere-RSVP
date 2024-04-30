@@ -1,36 +1,28 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Notiflix from "notiflix";
 import { GoogleLogin } from "@react-oauth/google";
-import { gapi } from 'gapi-script';
-import { TextInput, GoogleIcon } from "../components";
+import { TextInput } from "../components";
 import authbg from "../assets/auth_bg.png";
-
-const clientId = import.meta.env.VITE_PUBLIC_GOOGLE_CLIENT_ID;
 
 const SignUp = () => {
      const [signupData, setSignupData] = useState({});
-
-     useEffect(() => {
-          function start() {
-               gapi.client.init({
-                    clientId: clientId,
-                    scope: "email profile",
-               }).then(() => {
-                    console.log("Google API initialized successfully");
-               }).catch((error) => {
-                    console.error("Error initializing Google API:", error);
-               });
-          }
-          gapi.load('client:auth2', start);
-     }, []);
 
      const handleChange = (e) => {
           const { name, value } = e.target;
           e.target.setCustomValidity("");
           setSignupData((prevValue) => ({ ...prevValue, [name]: value }));
      };
+     const onSuccess = (response) => {
+          console.log(response)
+          Notiflix.Notify.success("You have successfully signed up!");
+          window.location.href = "/auth/login";
+     }
+     const onError = () => {
+          console.log('Login Failed')
+          Notiflix.Notify.failure("Failed to sign up. Please try again later.");
+     }
 
      const handleSignUp = (userData) => {
           Notiflix.Loading.standard("Signing up...");
@@ -59,27 +51,6 @@ const SignUp = () => {
                });
      };
 
-     const handleGoogleLogin = async () => {
-          try {
-               const auth2 = window.gapi.auth2.getAuthInstance();
-               const googleUser = await auth2.signIn();
-               const profile = googleUser.getBasicProfile();
-               const username = profile.getName();
-               const email = profile.getEmail();
-               setSignupData({
-                    username,
-                    email
-               });
-               await handleSignUp({
-                    username,
-                    email,
-                    password: ''
-               });
-          } catch (error) {
-               console.error("Google sign-in error:", error);
-          }
-     };
-
      return (
           <div className="h-screen flex flex-row">
                <div className="h-full w-full md:w-md1 flex justify-center items-center">
@@ -101,11 +72,7 @@ const SignUp = () => {
                               </div>
                               <hr className="border border-white" />
                               <div className="flex flex-col w-full items-center gap-5 md:gap-10 px-5">
-                                   <GoogleLogin clientId={clientId} buttonText="Continue with Google" cookiePolicy={'single_host_origin'}>
-                                        <button onClick={handleGoogleLogin} className="w-full flex items-center justify-center bg-white rounded-10">
-                                             <GoogleIcon />
-                                        </button>
-                                   </GoogleLogin>
+                                   <GoogleLogin onSuccess={onSuccess} onError={onError} text="continue_with" type="standard" />
                                    <button type="submit" className="w-full bg-primary-light uppercase font-Bayon font-normal text-base rounded-10 py-2 md:py-4">Continue</button>
                               </div>
                          </form>

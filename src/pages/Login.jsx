@@ -3,10 +3,9 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Notiflix from "notiflix";
 import { GoogleLogin } from "@react-oauth/google";
-import { GoogleIcon, TextInput } from "../components";
+import { TextInput } from "../components";
 import authbg from "../assets/auth_bg.png";
 
-const clientId = import.meta.env.VITE_PUBLIC_GOOGLE_CLIENT_ID;
 
 const Login = () => {
      const [loginData, setLoginData] = useState({});
@@ -16,7 +15,14 @@ const Login = () => {
           e.target.setCustomValidity("");
           setLoginData(prevValue => ({ ...prevValue, [name]: value }));
      }
-
+     const onSuccess = () => {
+          Notiflix.Notify.success("You have successfully signed up!");
+          window.location.href = "/home";
+     }
+     const onError = () => {
+          console.log('Login Failed')
+          Notiflix.Notify.failure("Failed to sign up. Please try again later.");
+     }
      const handleLogin = (e) => {
           e.preventDefault();
           Notiflix.Loading.standard("Logging in...");
@@ -35,26 +41,6 @@ const Login = () => {
                Notiflix.Notify.failure("Failed to log in. Please check your username & password and try again.");
           });
      }
-     const handleGoogleLogin = async () => {
-          try {
-               const auth2 = window.gapi.auth2.getAuthInstance();
-               const googleUser = await auth2.signIn();
-               const profile = googleUser.getBasicProfile();
-               const username = profile.getName();
-               const email = profile.getEmail();
-               setLoginData({
-                    username,
-                    email
-               });
-               await handleLogin({
-                    username,
-                    email,
-                    password: ''
-               });
-          } catch (error) {
-               console.error("Google sign-in error:", error);
-          }
-     };
 
      return (
           <>
@@ -78,11 +64,7 @@ const Login = () => {
                                    </div>
                                    <hr className="border border-white" />
                                    <div className="flex flex-col w-full items-center gap-5 md:gap-10 px-5">
-                                        <GoogleLogin clientId={clientId} text="Continue with Google" onSuccess={handleGoogleLogin} onFailure={() => Notiflix.Notify.failure("Google sign-in failed. Please try again later.")}>
-                                             <button className="w-full flex items-center justify-center bg-white rounded-10">
-                                                  <GoogleIcon />
-                                             </button>
-                                        </GoogleLogin>
+                                        <GoogleLogin onSuccess={onSuccess} onError={onError} text="continue_with" type="standard" />
                                         <button type="submit" className="w-full bg-primary-light uppercase font-Bayon font-normal text-base rounded-10 py-2 md:py-4">Continue</button>
                                    </div>
                               </form>

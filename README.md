@@ -63,7 +63,7 @@ Set up the backend and database according to deployment instructions.
 Configure authentication providers.
 Run the frontend and backend locally for development.
 ## Contributors
-- Abdulbasit Abdullahi: [Github repository](https://github.com/bibhestee)
+- Abdulbasit Abdullahi: [Frontend React Developer](https://github.com/bibhestee)
 - Aaliyah Junaid: [Github repository](https://github.com/Leeyah-123)
 - Emmanuel Tofunmi: [Github repository](https://github.com/Hemazyn)
 - Andrew Ezeani: [Github repository](https://github.com/ezeaniiandrew)
