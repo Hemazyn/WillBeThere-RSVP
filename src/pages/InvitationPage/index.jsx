@@ -46,9 +46,9 @@ const InvitationPage = () => {
     uploadImages(e.target.files);
   };
 
-  // useEffect(() => {
-  //   if (event && event.userId === user?.id) navigate(`/dashboard/event/${id}`);
-  // }, [user, event, navigate, id]);
+  useEffect(() => {
+    if (event && event.userId === user?.id) navigate(`/dashboard/event/${id}`);
+  }, [user, event, navigate, id]);
 
   useEffect(() => {
     if (isSuccess) {
