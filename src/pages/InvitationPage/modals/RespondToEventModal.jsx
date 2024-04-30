@@ -89,11 +89,13 @@ const RespondToEventModal = ({ open, onClose, event, user }) => {
   useEffect(() => {
     if (isSuccess) {
       Notify.success(
-        'You have successfully responded to this event. Please refresh the page.'
+        `You have successfully responded to this event.${
+          user ? ' Please refresh the page.' : ''
+        } `
       );
       onClose();
     }
-  }, [isSuccess, onClose]);
+  }, [user, isSuccess, onClose]);
 
   useEffect(() => {
     if (isPending) Loading.hourglass();

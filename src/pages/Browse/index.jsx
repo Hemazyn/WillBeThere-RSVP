@@ -29,7 +29,7 @@ const Browse = () => {
             <h1 className="text-white text-4xl">No event matches the filter</h1>
           ) : (
             filteredEvents.map((event) => (
-              <EventCard key={event.id} event={event} />
+              <EventCard key={event.id} event={event} browse={true} />
             ))
           ))}
         {!isFiltered &&
@@ -38,7 +38,9 @@ const Browse = () => {
               No event to display at the moment. Please check again later.
             </h1>
           ) : (
-            events.map((event) => <EventCard key={event.id} event={event} />)
+            events.map((event) => (
+              <EventCard key={event.id} event={event} browse={true} />
+            ))
           ))}
       </div>
     )

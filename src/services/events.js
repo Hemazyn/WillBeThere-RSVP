@@ -69,7 +69,7 @@ export const useCreateEvent = () => {
   return { create: mutate, isPending, isSuccess, isError, error, data };
 };
 
-export const usePatchEvent = (id) => {
+export const useUpdateEvent = (id) => {
   const { mutate, isPending, isSuccess, isError, error, data } = useMutation({
     mutationFn: async (values) => {
       const { image, ...data } = values;
@@ -104,4 +104,16 @@ export const usePatchEvent = (id) => {
   });
 
   return { patch: mutate, isPending, isSuccess, isError, error, data };
+};
+
+export const useCancelEvent = (id) => {
+  const { mutate, isPending, isSuccess, isError, error, data } = useMutation({
+    mutationFn: async () => {
+      const res = await axios.patch(`events/cancel/${id}`);
+
+      return res.data.data;
+    },
+  });
+
+  return { cancelEvent: mutate, isPending, isSuccess, isError, error, data };
 };
