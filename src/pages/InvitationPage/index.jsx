@@ -1,3 +1,5 @@
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import moment from 'moment';
 import { Loading, Notify } from 'notiflix';
 import { useEffect, useState } from 'react';
@@ -5,11 +7,11 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Button, Nav } from '../../components';
 import { useAuthContext } from '../../contexts/AuthContext';
 import { useGetEvent } from '../../services/events';
-import { useGetRsvpsForEvent } from '../../services/rsvp';
+import { useGetRsvpsForEvent, useUploadEventImages } from '../../services/rsvp';
 import RespondToEventModal from './modals/RespondToEventModal';
 import UpdateResponseModal from './modals/UpdateResponseModal';
 
-const EventPage = () => {
+const InvitationPage = () => {
   const { id } = useParams();
   const { user } = useAuthContext();
   const navigate = useNavigate();
@@ -27,14 +29,33 @@ const EventPage = () => {
     error: rsvpError,
   } = useGetRsvpsForEvent(id);
 
+  const {
+    uploadImages,
+    isSuccess,
+    isPending: isUploadImagesLoading,
+    isError: isUploadImagesError,
+    error: uploadImagesError,
+  } = useUploadEventImages(id);
+
   const handleClick = () => {
     if (response) setOpenUpdateRsvpModal(true);
     else setOpenRsvpModal(true);
   };
 
+  const handleUpload = (e) => {
+    uploadImages(e.target.files);
+  };
+
   useEffect(() => {
     if (event && event.userId === user?.id) navigate(`/dashboard/event/${id}`);
   }, [user, event, navigate, id]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      Notify.success('Images uploaded successfully');
+      fetchRsvps();
+    }
+  }, [fetchRsvps, isSuccess]);
 
   useEffect(() => {
     if (rsvps && rsvps.length > 0)
@@ -47,9 +68,10 @@ const EventPage = () => {
   }, []);
 
   useEffect(() => {
-    if (isLoading || isRsvpLoading) Loading.hourglass();
+    if (isLoading || isRsvpLoading || isUploadImagesLoading)
+      Loading.hourglass();
     else Loading.remove();
-  }, [isLoading, isRsvpLoading]);
+  }, [isLoading, isRsvpLoading, isUploadImagesLoading]);
 
   useEffect(() => {
     if (isError) {
@@ -60,8 +82,13 @@ const EventPage = () => {
         rsvpError?.response?.data?.message || 'Unable to fetch rsvps'
       );
     }
+    if (isUploadImagesError) {
+      Notify.failure(
+        uploadImagesError?.response?.data?.message || 'Unable to upload images'
+      );
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isError, isRsvpError]);
+  }, [isError, isRsvpError, isUploadImagesError]);
 
   return (
     <>
@@ -85,7 +112,7 @@ const EventPage = () => {
               <div className="lg:w-2/5 h-full">
                 <img
                   src={event.image}
-                  alt="image_name.jpg"
+                  alt=""
                   className="w-full max-h-64 lg:max-h-full lg:w-80 xl:h-full object-cover rounded-xl my-9"
                 />
               </div>
@@ -193,6 +220,44 @@ const EventPage = () => {
             </div>
           )}
         </div>
+
+        {user && response && (
+          <div className="my-10 px-5">
+            <div className="flex justify-between">
+              <h2 className="text-3xl text-white">Your Uploads</h2>
+              <label
+                className="cursor-pointer flex p-2 items-center gap-2 rounded-full bg-primary-light"
+                tabIndex={0}
+              >
+                <span>Upload Images</span>
+                <FontAwesomeIcon icon={faPlus} />
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleUpload}
+                  aria-label="Upload event images"
+                  multiple
+                  hidden
+                />
+              </label>
+            </div>
+
+            {response?.uploads.length > 0 ? (
+              <div className="grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-5">
+                {response.uploads.map((upload) => (
+                  <img
+                    key={upload}
+                    src={upload}
+                    alt=""
+                    className="max-w-full h-full object-cover rounded-xl"
+                  />
+                ))}
+              </div>
+            ) : (
+              <h2 className="text-white">You have not uploaded any images</h2>
+            )}
+          </div>
+        )}
       </main>
 
       <RespondToEventModal
@@ -214,4 +279,4 @@ const EventPage = () => {
   );
 };
 
-export default EventPage;
+export default InvitationPage;

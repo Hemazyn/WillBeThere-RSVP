@@ -17,6 +17,8 @@ function CardMenu({ event }) {
       return Notify.failure(
         'Cannot edit an event that has already taken place'
       );
+
+    Notify.info('Not yet implemented');
   };
 
   const handleCancelEvent = () => {
