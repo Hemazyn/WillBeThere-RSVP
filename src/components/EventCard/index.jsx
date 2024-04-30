@@ -6,9 +6,10 @@ import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuthContext } from '../../contexts/AuthContext';
+import MenuIcon from '../MenuIcon';
 import styles from './event-card.module.css';
 
-function EventCard({ event }) {
+function EventCard({ event, browse }) {
   const { user } = useAuthContext();
   const [isBookmarked, setIsBookmarked] = useState(false);
 
@@ -35,13 +36,16 @@ function EventCard({ event }) {
 
   return (
     <article className={styles.card}>
-      <button className={styles.bookmark} onClick={bookmarkEvent}>
-        {isBookmarked ? (
-          <FontAwesomeIcon icon={faBookmark} />
-        ) : (
-          <FontAwesomeIcon icon={notBookmarked} />
-        )}
-      </button>
+      {browse && (
+        <button className={styles.bookmark} onClick={bookmarkEvent}>
+          {isBookmarked ? (
+            <FontAwesomeIcon icon={faBookmark} />
+          ) : (
+            <FontAwesomeIcon icon={notBookmarked} />
+          )}
+        </button>
+      )}
+      {!browse && <MenuIcon event={event} />}
       <img src={event.image} className="w-full h-full" alt="" />
       <div className={styles.details}>
         <h2 className={event.cancelled ? 'text-red' : 'text-white'}>
@@ -66,6 +70,7 @@ function EventCard({ event }) {
 
 EventCard.propTypes = {
   event: PropTypes.object.isRequired,
+  browse: PropTypes.bool,
 };
 
 export default EventCard;

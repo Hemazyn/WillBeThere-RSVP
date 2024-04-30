@@ -143,7 +143,7 @@ const EventPage = () => {
                         <div className="p-3">
                           <p className="text-slate text-sm">Max Guests</p>
                           <h2 className="text-xl text-white">
-                            {event.maxGuests || 0}
+                            {event.maxGuests || 'nil'}
                           </h2>
                         </div>
                         <div className="p-3">
@@ -151,7 +151,7 @@ const EventPage = () => {
                             Max Guests Per Attendee
                           </p>
                           <h2 className="text-xl text-white">
-                            {event.maxGuestsPerAttendee || 0}
+                            {event.maxGuestsPerAttendee || 'nil'}
                           </h2>
                         </div>
                         <div className="p-3">
@@ -159,7 +159,7 @@ const EventPage = () => {
                             Total Confirmed Guests
                           </p>
                           <h2 className="text-xl text-white">
-                            {event.guestCount}
+                            {Math.abs(event.guestCount)}
                           </h2>
                         </div>
 
