@@ -12,7 +12,7 @@ function Avatar({ src, className }) {
           className="w-full h-full rounded-full object-cover"
         />
       ) : (
-        <MdPerson fill="white" />
+        <MdPerson className="w-full h-full" fill="white" />
       )}
     </div>
   );
