@@ -1,17 +1,18 @@
 import {
   faCirclePlus,
+  faHome,
   faMagnifyingGlass,
   faSliders,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useContext, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useAuthContext } from '../../contexts/AuthContext';
 import { EventContext } from '../../contexts/EventContext';
 import Avatar from '../Avatar';
 import Button from '../Button';
 import SubMenu from '../SubMenu';
 import styles from './nav.module.css';
-import { useAuthContext } from '../../contexts/AuthContext';
 
 function Nav() {
   const { user } = useAuthContext();
@@ -56,18 +57,19 @@ function Nav() {
         </div>
       )}
       <div className={styles.icons}>
-        {location.pathname === '/dashboard' && (
+        {location.pathname === '/dashboard' ? (
           <>
             <Button className={styles.mobile}>
               <FontAwesomeIcon icon={faMagnifyingGlass} />
             </Button>
-            <Button>
-              <FontAwesomeIcon
-                icon={faSliders}
-                onClick={() => setIsMenuVisible(!isMenuVisible)}
-              />
+            <Button onClick={() => setIsMenuVisible(!isMenuVisible)}>
+              <FontAwesomeIcon icon={faSliders} />
             </Button>
           </>
+        ) : (
+          <Button as="Link" to="/dashboard">
+            <FontAwesomeIcon icon={faHome} />
+          </Button>
         )}
         <Button as="Link" to="/dashboard/event/create">
           <FontAwesomeIcon icon={faCirclePlus} />

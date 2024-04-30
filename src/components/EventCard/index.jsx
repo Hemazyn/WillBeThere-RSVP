@@ -42,12 +42,11 @@ function EventCard({ event }) {
       </button>
       <img src={event.image} className="w-full h-full" alt="" />
       <div className={styles.details}>
-        <h2 className="text-white">
+        <h2 className={event.cancelled ? 'text-red' : 'text-white'}>
           <Link to={`/event/${event.id}`}>{event.name}</Link>
         </h2>
         <p className="text-slate">
           {moment(event.date).format('D MMM HH:mm [GMT] Z')} <br />{' '}
-          {event.location}
         </p>
       </div>
     </article>

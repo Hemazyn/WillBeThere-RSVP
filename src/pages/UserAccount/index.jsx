@@ -20,6 +20,8 @@ function UserAccount() {
   const { user } = useAuthContext();
   const [activeTab, setActiveTab] = useState('my events');
 
+  const bookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]');
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.user}>
@@ -50,7 +52,7 @@ function UserAccount() {
         <TabPanel label="my events" activeTab={activeTab} events={[]} />
         <TabPanel label="happened" activeTab={activeTab} events={[]} />
         <TabPanel label="cancelled" activeTab={activeTab} events={[]} />{' '}
-        <TabPanel label="saved" activeTab={activeTab} events={[]} />
+        <TabPanel label="saved" activeTab={activeTab} events={bookmarks} />
       </section>
     </div>
   );
