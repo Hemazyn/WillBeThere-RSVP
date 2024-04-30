@@ -5,14 +5,17 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { EventContext } from '../../contexts/EventContext';
 import Avatar from '../Avatar';
 import Button from '../Button';
 import SubMenu from '../SubMenu';
 import styles from './nav.module.css';
+import { useAuthContext } from '../../contexts/AuthContext';
 
 function Nav() {
+  const { user } = useAuthContext();
+  const location = useLocation();
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   const { events, setIsFiltered, setFilteredEvents } = useContext(EventContext);
 
@@ -38,33 +41,39 @@ function Nav() {
       <div className={styles.logo}>
         <Link to="/dashboard">will be there</Link>
       </div>
-      <div className={styles.input}>
-        <input
-          type="search"
-          name="search event"
-          id="sd"
-          placeholder="search for events"
-          onChange={handleSearch}
-        />
-        <span>
-          <FontAwesomeIcon icon={faMagnifyingGlass} />
-        </span>
-      </div>
-      <div className={styles.icons}>
-        <Button className={styles.mobile}>
-          <FontAwesomeIcon icon={faMagnifyingGlass} />
-        </Button>
-        <Button>
-          <FontAwesomeIcon
-            icon={faSliders}
-            onClick={() => setIsMenuVisible(!isMenuVisible)}
+      {location.pathname === '/dashboard' && (
+        <div className={styles.input}>
+          <input
+            type="search"
+            name="search event"
+            id="sd"
+            placeholder="search for events"
+            onChange={handleSearch}
           />
-        </Button>
+          <span>
+            <FontAwesomeIcon icon={faMagnifyingGlass} />
+          </span>
+        </div>
+      )}
+      <div className={styles.icons}>
+        {location.pathname === '/dashboard' && (
+          <>
+            <Button className={styles.mobile}>
+              <FontAwesomeIcon icon={faMagnifyingGlass} />
+            </Button>
+            <Button>
+              <FontAwesomeIcon
+                icon={faSliders}
+                onClick={() => setIsMenuVisible(!isMenuVisible)}
+              />
+            </Button>
+          </>
+        )}
         <Button as="Link" to="/dashboard/event/create">
           <FontAwesomeIcon icon={faCirclePlus} />
         </Button>
         <Button className={styles.profile} as="Link" to="/dashboard/profile">
-          <Avatar className={styles.avatar} />
+          <Avatar className={styles.avatar} src={user?.url} />
         </Button>
       </div>
       {isMenuVisible && <SubMenu />}

@@ -1,9 +1,25 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-const AuthContext = createContext(null);
+const AuthContext = createContext();
 
 const AuthContextProvider = ({ children }) => {
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [user, setUser] = useState(
+    localStorage.getItem('user')
+      ? JSON.parse(localStorage.getItem('user'))
+      : null
+  );
+
+  useEffect(() => {
+    if (user && location.pathname.startsWith('/auth')) {
+      navigate('/dashboard', { replace: true });
+    }
+    if (!user && location.pathname.startsWith('/dashboard')) {
+      navigate('/auth/login', { replace: true });
+    }
+  }, [location, navigate, user]);
 
   return (
     <AuthContext.Provider value={{ user, setUser }}>
@@ -17,4 +33,4 @@ export const useAuthContext = () => {
   return useContext(AuthContext);
 };
 
-export default AuthContextProvider;
+export { AuthContext, AuthContextProvider };

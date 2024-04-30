@@ -1,6 +1,8 @@
 .avatar {
-    width: 86px;
-    height: 86px;
-    border-radius: 50%;
-    border: 2px solid white;
+  display: grid;
+  place-items: center;
+  width: 86px;
+  height: 86px;
+  border-radius: 50%;
+  border: 2px solid white;
 }

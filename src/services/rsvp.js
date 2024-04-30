@@ -1,31 +1,10 @@
 import { useMutation } from '@tanstack/react-query';
-import axios from '../api/axios';
-import { queryClient } from '../react-query/react-query';
+import axios from '../lib/axios';
 
-export const usePatchEvent = () => {
-  const { mutate, isPending, isSuccess, isError, error, data } = useMutation({
-    mutationFn: async ({ values, eventId }) => {
-      const { media, ...data } = values;
-      let mediaRes = null;
-
-      const formData = new FormData();
-      media.forEach((file) => formData.append('media', file));
-
-      if (media[0] instanceof File) {
-        console.log('is file.');
-        mediaRes = await axios.post('uploads/medias', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        });
-
-        data.media = mediaRes.data;
-      } else {
-        console.log("isn't file");
-        data.media = media;
-      }
-
-      const res = axios.patch(`events/${eventId}`, JSON.stringify(data), {
+export const useCreateRsvp = () => {
+  const { isSuccess, isPending, isError, error, data, mutate } = useMutation({
+    mutationFn: async ({ eventId, data }) => {
+      const res = await axios.post(`events/${eventId}`, JSON.stringify(data), {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -33,10 +12,19 @@ export const usePatchEvent = () => {
 
       return res.data.data;
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['events'] });
-    },
   });
 
-  return { patch: mutate, isPending, isSuccess, isError, error, data };
+  return { create: mutate, isSuccess, isPending, isError, error, data };
+};
+
+export const useGetRsvpsForEvent = (id) => {
+  const { isSuccess, isPending, isError, data, error, mutate } = useMutation({
+    mutationFn: async () => {
+      const res = await axios.get(`events/id/${id}`);
+      return res.data;
+    },
+    queryKey: [`event/${id}`],
+  });
+
+  return { fetchRsvps: mutate, isSuccess, isError, isPending, data, error };
 };

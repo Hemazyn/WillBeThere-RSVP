@@ -43,7 +43,7 @@ function EventCard({ event }) {
       <img src={event.image} className="w-full h-full" alt="" />
       <div className={styles.details}>
         <h2 className="text-white">
-          <Link to={`/dashboard/event/${event.id}`}>{event.name}</Link>
+          <Link to={`/event/${event.id}`}>{event.name}</Link>
         </h2>
         <p className="text-slate">
           {moment(event.date).format('D MMM HH:mm [GMT] Z')} <br />{' '}

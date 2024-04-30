@@ -6,6 +6,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 import { Avatar, Button, Tab, TabList, TabPanel } from '../../components';
+import { useAuthContext } from '../../contexts/AuthContext';
 import styles from './user-account.module.css';
 
 const tabs = [
@@ -16,12 +17,13 @@ const tabs = [
 ];
 
 function UserAccount() {
+  const { user } = useAuthContext();
   const [activeTab, setActiveTab] = useState('my events');
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.user}>
-        <Avatar src="" />
+        <Avatar src={user?.url} />
         <p>Username</p>
         <Button>
           <FontAwesomeIcon icon={faArrowRightToBracket} />

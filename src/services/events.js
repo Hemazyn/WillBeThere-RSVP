@@ -39,7 +39,7 @@ export const useCreateEvent = () => {
         },
       });
 
-      data.image = uploadResponse.data.publicUrl;
+      data.image = uploadResponse.data.data.publicUrl;
 
       const res = await axios.post('events', JSON.stringify(data), {
         headers: {
@@ -75,7 +75,6 @@ export const usePatchEvent = (id) => {
           console.error('Unable to delete previous image', err);
         });
 
-        console.log(uploadResponse);
         data.image = uploadResponse.data.publicUrl;
       }
 
@@ -93,20 +92,4 @@ export const usePatchEvent = (id) => {
   });
 
   return { patch: mutate, isPending, isSuccess, isError, error, data };
-};
-
-export const useCreateRsvp = () => {
-  const { isSuccess, isPending, isError, error, data, mutate } = useMutation({
-    mutationFn: async ({ eventId, data }) => {
-      const res = await axios.post(`events/${eventId}`, JSON.stringify(data), {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-
-      return res.data.data;
-    },
-  });
-
-  return { create: mutate, isSuccess, isPending, isError, error, data };
 };
