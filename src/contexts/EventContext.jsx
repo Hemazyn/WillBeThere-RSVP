@@ -3,7 +3,7 @@ import { useGetEvents } from '../services/events';
 
 const EventContext = createContext();
 
-const EventProvider = ({ children }) => {
+const EventContextProvider = ({ children }) => {
   const [filteredEvents, setFilteredEvents] = useState([]);
   const [isFiltered, setIsFiltered] = useState(false);
   const { data: events, isPending: isLoading, isError, error } = useGetEvents();
@@ -31,4 +31,4 @@ export const useEventContext = () => {
   return useContext(EventContext);
 };
 
-export { EventContext, EventProvider };
+export { EventContext, EventContextProvider };

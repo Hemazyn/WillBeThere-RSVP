@@ -1,51 +1,107 @@
+import { Loading, Notify } from 'notiflix';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { TextInput } from '../components';
+import { Button, TextField } from '../../components';
+import { useAuthContext } from '../../contexts/AuthContext';
+import { useLogin } from '../../services/auth';
+import { loginValidationSchema } from './login.validation';
 
 const Login = () => {
+  const {
+    create: login,
+    isPending,
+    isError,
+    data: user,
+    isSuccess,
+    error,
+  } = useLogin();
+  const { setUser } = useAuthContext();
   const navigate = useNavigate();
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    navigate('/app');
+
+  const [form, setForm] = useState({
+    username: '',
+    password: '',
+  });
+  const [formError, setFormError] = useState();
+
+  const onChange = (e) => {
+    setForm({ ...form, [e.target.id]: e.target.value });
+    setFormError({ ...formError, [e.target.id]: '' });
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formValidation = loginValidationSchema.safeParse(form);
+    if (!formValidation.success) {
+      setFormError(formValidation.error.flatten().fieldErrors);
+      return;
+    }
+
+    login(form);
+  };
+
+  useEffect(() => {
+    if (isSuccess) {
+      setUser(user);
+      Notify.success('Login successful');
+      navigate('/dashboard');
+    }
+  }, [isSuccess, setUser, user, navigate]);
+
+  useEffect(() => {
+    if (isError) {
+      if (error?.response?.data?.non_field_errors) {
+        Notify.failure(error.response.data.non_field_errors[0]);
+      } else Notify.failure(error.message || 'Something went wrong');
+    }
+  }, [isError, error]);
+
+  useEffect(() => {
+    if (isPending) Loading.hourglass();
+    else Loading.remove();
+  }, [isPending]);
 
   return (
     <div className="h-fit w-full md:w-md2 flex flex-col justify-center gap-5 md:gap-10">
       <h1 className="font-normal text-md md:text-lg text-white font-Bayon text-center">
         Welcome to <span className="text-primary-default">Will Be There</span>
       </h1>
-      <form
-        onSubmit={handleSubmit}
-        noValidate
-        className="flex flex-col gap-5 md:gap-10"
-      >
+      <form onSubmit={handleSubmit} className="flex flex-col gap-5 md:gap-10">
         <div className="px-5 flex flex-col gap-5 md:gap-10">
           <div className="flex flex-col font-Bayon">
             <h2 className="text-base md:text-md text-start uppercase text-primary-default">
               login
             </h2>
             <p className="text-slate uppercase font-Bayon font-normal text-sm md:text-base">
-              doesn’t have an account?{' '}
+              don’t have an account?{' '}
               <Link to="/auth/signup" className="text-primary-default">
                 sign up
               </Link>
             </p>
           </div>
           <div className="w-full flex flex-col font-Bayon gap-5 md:gap-8">
-            <TextInput
+            <TextField
+              label="Username"
+              id="username"
               type="text"
-              name="first_name"
               placeholder="enter user name"
-              required={true}
-              onInvalid={(e) => e.target.setCustomValidity('enter user name')}
-              onInput={(e) => e.target.setCustomValidity('')}
+              value={form.username}
+              onChange={onChange}
+              error={formError?.username?.[0]}
+              required
             />
 
             <div className="flex flex-col gap-3 md:gap-5">
-              <TextInput
+              <TextField
+                label="Password"
                 type="password"
-                name="password"
+                id="password"
                 placeholder="enter password"
-                required={true}
+                value={form.password}
+                onChange={onChange}
+                error={formError?.password?.[0]}
+                required
               />
               <Link
                 to="/auth/forgot-password"
@@ -93,7 +149,7 @@ const Login = () => {
                 </defs>
               </svg>
             </Link>
-            <Link to="">
+            <button type="button" onClick={() => Notify.info('Coming Soon')}>
               <svg
                 className="w-10 h-10 md:w-15 md:h-15"
                 viewBox="0 0 60 60"
@@ -106,14 +162,14 @@ const Login = () => {
                   fill="#1877F2"
                 />
               </svg>
-            </Link>
+            </button>
           </div>
-          <button
+          <Button
             type="submit"
-            className="w-full  bg-primary-light uppercase font-Bayon font-normal text-base rounded-10 py-2 md:py-4"
+            className="w-full bg-primary-light uppercase rounded-10 py-2 md:py-4"
           >
             Continue
-          </button>
+          </Button>
         </div>
       </form>
     </div>

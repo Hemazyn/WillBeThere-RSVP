@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom';
 import { Nav } from '../../components';
 import styles from './layout.module.css';
 
-function AppLayout() {
+function DashboardLayout() {
   return (
     <div>
       <header className={styles.header}>
@@ -15,4 +15,4 @@ function AppLayout() {
   );
 }
 
-export default AppLayout;
+export default DashboardLayout;

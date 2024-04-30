@@ -1,10 +1,19 @@
 import PropTypes from 'prop-types';
+import { MdPerson } from 'react-icons/md';
 import styles from './avatar.module.css';
 
 function Avatar({ src, className }) {
   return (
     <div className={`${className} ${styles.avatar}`}>
-      <img src={src} alt="" />
+      {src ? (
+        <img
+          src={src}
+          alt=""
+          className="w-full h-full rounded-full object-cover"
+        />
+      ) : (
+        <MdPerson className="w-full h-full" fill="white" />
+      )}
     </div>
   );
 }

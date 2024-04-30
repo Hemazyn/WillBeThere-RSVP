@@ -18,7 +18,7 @@ export const eventCreationValidationSchema = z
     maxGuestsPerAttendee: z.number().optional(),
     maxGuests: z.number().min(1).optional(),
   })
-  .superRefine(({ startDate, endDate, locationReleaseDate, duration }, ctx) => {
+  .superRefine(({ date, endDate, locationReleaseDate, duration }, ctx) => {
     if (duration) {
       if (duration.days === 0 && duration.hours === 0 && duration.minutes === 0)
         ctx.addIssue({
@@ -40,15 +40,15 @@ export const eventCreationValidationSchema = z
         });
     }
 
-    if (new Date(startDate).getTime() <= new Date().getTime())
+    if (new Date(date).getTime() <= new Date().getTime())
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         message: 'Event date must be in the future',
-        path: ['startDate'],
+        path: ['date'],
       });
 
     if (endDate) {
-      if (new Date(startDate).getTime() > new Date(endDate).getTime())
+      if (new Date(date).getTime() > new Date(endDate).getTime())
         ctx.addIssue({
           code: z.ZodIssueCode.custom,
           message: 'End date must be after event date',
@@ -57,9 +57,7 @@ export const eventCreationValidationSchema = z
     }
 
     if (locationReleaseDate) {
-      if (
-        new Date(startDate).getTime() < new Date(locationReleaseDate).getTime()
-      )
+      if (new Date(date).getTime() < new Date(locationReleaseDate).getTime())
         ctx.addIssue({
           code: z.ZodIssueCode.custom,
           message: 'Location release date must be before event date',

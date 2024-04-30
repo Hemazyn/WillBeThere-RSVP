@@ -62,6 +62,8 @@ function CreateEvent() {
         ...form,
         [e.target.id]: Number(e.target.value),
       });
+    else if (e.target.type === 'checkbox')
+      setForm({ ...form, [e.target.id]: e.target.checked });
     else setForm({ ...form, [e.target.id]: e.target.value });
     setFormError({ ...formError, [e.target.id]: '' });
   };
@@ -89,6 +91,7 @@ function CreateEvent() {
     const formValidation = eventCreationValidationSchema.safeParse(form);
     if (!formValidation.success) {
       setFormError(formValidation.error.flatten().fieldErrors);
+      Notify.failure('Please crosscheck all fields');
       return;
     }
 
@@ -124,23 +127,24 @@ function CreateEvent() {
 
   useEffect(() => {
     if (isSuccess) {
-      console.log('Returned data');
-
       Report.success(
         'Event created successfully',
         `<p>Here's your event link</p> <br />
-         <p>${window.location.href}/${data?.id}</p>
+         <p>${window.location.origin}/invitation/${data?.id}</p>
          `,
         'Copy',
         () => {
-          navigator.clipboard.writeText(window.location.href + '/' + data?.id);
+          navigator.clipboard.writeText(
+            window.location.origin + '/invitation/' + data?.id
+          );
+          Notify.success('Link copied to clipboard');
+          navigate('/dashboard/event/' + data?.id);
         },
         {
           plainText: false,
           backOverlayClickToClose: true,
         }
       );
-      navigate('/dashboard/profile');
     }
   }, [navigate, isSuccess, data?.id]);
 
