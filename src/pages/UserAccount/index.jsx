@@ -39,7 +39,11 @@ function UserAccount() {
       <section className={styles.events}>
         <header>
           <p>Events</p>
-          <Button as="Link" to="/dashboard/event/create">
+          <Button
+            as="Link"
+            className="flex p-2 items-center gap-2 rounded-full bg-slate"
+            to="/dashboard/event/create"
+          >
             <span>Add Event</span>
             <FontAwesomeIcon icon={faPlus} />
           </Button>
