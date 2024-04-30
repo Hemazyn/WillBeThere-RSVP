@@ -1,13 +1,60 @@
+import { Loading, Notify } from 'notiflix';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { TextInput } from '../components';
+import { Button, TextField } from '../../components';
+import { useSignup } from '../../services/auth';
+import { signupValidationSchema } from './signup.validation';
 
 const SignUp = () => {
+  const { create: signup, isPending, isError, isSuccess, error } = useSignup();
+
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    navigate('/app');
+  const [form, setForm] = useState({
+    username: '',
+    email: '',
+    first_name: '',
+    last_name: '',
+    password: '',
+  });
+  const [formError, setFormError] = useState();
+
+  const onChange = (e) => {
+    setForm({ ...form, [e.target.id]: e.target.value });
+    setFormError({ ...formError, [e.target.id]: '' });
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formValidation = signupValidationSchema.safeParse(form);
+    if (!formValidation.success) {
+      setFormError(formValidation.error.flatten().fieldErrors);
+      return;
+    }
+
+    signup(form);
+  };
+
+  useEffect(() => {
+    if (isSuccess) {
+      Notify.success('Signup successful');
+      navigate('/auth/login');
+    }
+  }, [isSuccess, navigate]);
+
+  useEffect(() => {
+    if (isError) {
+      if (error?.response?.data?.non_field_errors) {
+        Notify.failure(error.response.data.non_field_errors[0]);
+      } else Notify.failure(error.message || 'Something went wrong');
+    }
+  }, [isError, error]);
+
+  useEffect(() => {
+    if (isPending) Loading.hourglass();
+    else Loading.remove();
+  }, [isPending]);
 
   return (
     <div className="h-fit w-full md:w-md2 flex flex-col justify-center gap-5 md:gap-10">
@@ -32,40 +79,56 @@ const SignUp = () => {
             </p>
           </div>
           <div className="w-full flex flex-col font-Bayon gap-5 md:gap-8">
-            <TextInput
+            <TextField
+              label="First name"
+              id="first_name"
               type="text"
-              name="first_name"
+              placeholder="enter first name"
+              value={form.first_name}
+              onChange={onChange}
+              error={formError?.first_name?.[0]}
+              required
+            />
+            <TextField
+              label="Last name"
+              id="last_name"
+              type="text"
+              placeholder="enter last name"
+              value={form.last_name}
+              onChange={onChange}
+              error={formError?.last_name?.[0]}
+              required
+            />
+            <TextField
+              label="Username"
+              id="username"
+              type="text"
               placeholder="enter user name"
-              required={true}
-              onInvalid={(e) => e.target.setCustomValidity('enter user name')}
-              onInput={(e) => e.target.setCustomValidity('')}
+              value={form.username}
+              onChange={onChange}
+              error={formError?.username?.[0]}
+              required
             />
-            <TextInput
+            <TextField
+              label="Email"
+              id="email"
               type="email"
-              name="email_address"
-              placeholder="enter email"
-              required={true}
-              onInvalid={(e) =>
-                e.target.setCustomValidity(
-                  'Please enter a valid email address.'
-                )
-              }
-              onInput={(e) => e.target.setCustomValidity('')}
+              placeholder="enter email address"
+              value={form.email}
+              onChange={onChange}
+              error={formError?.email?.[0]}
+              required
             />
-            <div className="flex flex-col gap-3 md:gap-5">
-              <TextInput
-                type="password"
-                name="password"
-                placeholder="enter password"
-                required={true}
-                onInvalid={(e) =>
-                  e.target.setCustomValidity(
-                    'Password must be at least 6 characters long.'
-                  )
-                }
-                onInput={(e) => e.target.setCustomValidity('')}
-              />
-            </div>
+            <TextField
+              label="Password"
+              type="password"
+              id="password"
+              placeholder="enter password"
+              value={form.password}
+              onChange={onChange}
+              error={formError?.password?.[0]}
+              required
+            />
           </div>
         </div>
         <hr className="border border-white" />
@@ -105,7 +168,7 @@ const SignUp = () => {
                 </defs>
               </svg>
             </Link>
-            <Link to="">
+            <button type="button" onClick={() => Notify.info('Coming Soon')}>
               <svg
                 className="w-10 h-10 md:w-15 md:h-15"
                 viewBox="0 0 60 60"
@@ -118,14 +181,14 @@ const SignUp = () => {
                   fill="#1877F2"
                 />
               </svg>
-            </Link>
+            </button>
           </div>
-          <button
+          <Button
             type="submit"
-            className="w-full  bg-primary-light uppercase font-Bayon font-normal text-base rounded-10 py-2 md:py-4"
+            className="w-full bg-primary-light uppercase rounded-10 py-2 md:py-4"
           >
             Continue
-          </button>
+          </Button>
         </div>
       </form>
     </div>

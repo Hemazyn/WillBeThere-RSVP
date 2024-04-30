@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useLayoutEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const AuthContext = createContext();
@@ -12,7 +12,7 @@ const AuthContextProvider = ({ children }) => {
       : null
   );
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (user && location.pathname.startsWith('/auth')) {
       navigate('/dashboard', { replace: true });
     }

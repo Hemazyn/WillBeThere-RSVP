@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import styles from './select-input.module.css';
 import { createContext } from 'react';
+import styles from './select-input.module.css';
 
 const SelectInputContext = createContext(null);
 
@@ -17,7 +17,7 @@ function SelectInput({
   ...rest
 }) {
   return (
-    <SelectInputContext.Provider>
+    <SelectInputContext.Provider value={null}>
       <div className={clsx(className, styles.wrapper)}>
         <label htmlFor={id} className={showLabel ? '' : 'sr-only'}>
           {label} {required && <span className="text-red">*</span>}
@@ -55,7 +55,6 @@ SelectInput.defaultProps = {
 
 SelectInput.propTypes = {
   label: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
   icon: PropTypes.element,

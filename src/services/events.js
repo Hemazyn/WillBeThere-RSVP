@@ -26,6 +26,18 @@ export const useGetEvent = (id) => {
   return { isSuccess, isError, isPending, data, error };
 };
 
+export const useGetEventsForUser = (id) => {
+  const { isSuccess, isPending, isError, data, error } = useQuery({
+    queryFn: async () => {
+      const res = await axios.get(`events/user`);
+      return res.data.data;
+    },
+    queryKey: [`event/${id}`],
+  });
+
+  return { isSuccess, isError, isPending, data, error };
+};
+
 export const useCreateEvent = () => {
   const { mutate, isPending, isSuccess, isError, error, data } = useMutation({
     mutationFn: async (values) => {

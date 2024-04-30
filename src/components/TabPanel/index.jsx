@@ -14,7 +14,7 @@ function TabPanel({ label, activeTab, events }) {
       {events.length === 0 && <h1>No event to display at the moment</h1>}
       {events.length > 0 &&
         events.map((event) => (
-          <EventCard key={event} event={event} Icon={CardIcon} />
+          <EventCard key={event.id} event={event} Icon={CardIcon} />
         ))}
     </section>
   );

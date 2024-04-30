@@ -5,9 +5,11 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useAuthContext } from '../../contexts/AuthContext';
 import styles from './event-card.module.css';
 
 function EventCard({ event }) {
+  const { user } = useAuthContext();
   const [isBookmarked, setIsBookmarked] = useState(false);
 
   const bookmarkEvent = () => {
@@ -43,7 +45,16 @@ function EventCard({ event }) {
       <img src={event.image} className="w-full h-full" alt="" />
       <div className={styles.details}>
         <h2 className={event.cancelled ? 'text-red' : 'text-white'}>
-          <Link to={`/event/${event.id}`}>{event.name}</Link>
+          <Link
+            to={
+              event.userId === user?.id
+                ? `/dashboard/event/${event.id}`
+                : `/invitation/${event.id}`
+            }
+            className="line-clamp-2"
+          >
+            {event.name}
+          </Link>
         </h2>
         <p className="text-slate">
           {moment(event.date).format('D MMM HH:mm [GMT] Z')} <br />{' '}

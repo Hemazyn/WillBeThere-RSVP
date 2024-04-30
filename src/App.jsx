@@ -10,6 +10,7 @@ import {
   CreateEvent,
   EventPage,
   ForgotPassword,
+  InvitationPage,
   LandingPage,
   Login,
   ResetPassword,
@@ -25,10 +26,11 @@ function App() {
         <AuthContextProvider>
           <Routes>
             <Route path="/" element={<LandingPage />} />
-            <Route path="/event/:id" element={<EventPage />} />
+            <Route path="/invitation/:id" element={<InvitationPage />} />
             <Route path="/dashboard" element={<DashboardLayout />}>
               <Route index element={<Browse />} />
               <Route path="event">
+                <Route path=":id" element={<EventPage />} />
                 <Route path="create" element={<CreateEvent />} />
               </Route>
               <Route path="profile" element={<UserAccount />} />

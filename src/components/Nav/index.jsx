@@ -75,7 +75,7 @@ function Nav() {
           <FontAwesomeIcon icon={faCirclePlus} />
         </Button>
         <Button className={styles.profile} as="Link" to="/dashboard/profile">
-          <Avatar className={styles.avatar} src={user?.url} />
+          <Avatar className={styles.avatar} src={user?.profile_image_url} />
         </Button>
       </div>
       {isMenuVisible && <SubMenu />}

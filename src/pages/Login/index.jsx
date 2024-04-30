@@ -38,12 +38,13 @@ const Login = () => {
       return;
     }
 
-    await login(form);
+    login(form);
   };
 
   useEffect(() => {
     if (isSuccess) {
       setUser(user);
+      Notify.success('Login successful');
       navigate('/dashboard');
     }
   }, [isSuccess, setUser, user, navigate]);

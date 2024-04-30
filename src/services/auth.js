@@ -50,15 +50,34 @@ export const useSignup = () => {
 export const useLogout = () => {
   const { mutate, isPending, isSuccess, isError, error, data } = useMutation({
     mutationFn: async () => {
-      await axios.post('/logout/', {
-        headers: { 'Content-Type': 'application/json' },
+      await axios.post('/logout/', null, {
         baseURL: BASE_URL,
       });
 
+      localStorage.removeItem('token');
       localStorage.removeItem('user');
+      localStorage.removeItem('bookmarks');
       return;
     },
   });
 
-  return { create: mutate, isPending, isSuccess, isError, error, data };
+  return { logout: mutate, isPending, isSuccess, isError, error, data };
+};
+
+export const useDeleteAccount = () => {
+  const { mutate, isPending, isSuccess, isError, error, data } = useMutation({
+    mutationFn: async () => {
+      await axios.delete('/user/delete/', {
+        headers: { 'Content-Type': 'application/json' },
+        baseURL: BASE_URL,
+      });
+
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      localStorage.removeItem('bookmarks');
+      return;
+    },
+  });
+
+  return { deleteAccount: mutate, isPending, isSuccess, isError, error, data };
 };

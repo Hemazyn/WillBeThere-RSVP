@@ -130,15 +130,15 @@ function CreateEvent() {
       Report.success(
         'Event created successfully',
         `<p>Here's your event link</p> <br />
-         <p>${window.location.href}/${data?.id}</p>
+         <p>${window.location.origin}/invitation/${data?.id}</p>
          `,
         'Copy',
         () => {
           navigator.clipboard.writeText(
-            window.location.origin + '/event/' + data?.id
+            window.location.origin + '/invitation/' + data?.id
           );
           Notify.success('Link copied to clipboard');
-          navigate('/event/' + data?.id);
+          navigate('/dashboard/event/' + data?.id);
         },
         {
           plainText: false,
