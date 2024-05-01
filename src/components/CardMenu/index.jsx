@@ -1,4 +1,4 @@
-import { faPen, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faClipboard, faPen, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Loading, Notify } from 'notiflix';
 import { useEffect } from 'react';
@@ -53,6 +53,23 @@ function CardMenu({ event }) {
 
   return (
     <div className={styles.wrapper}>
+      <Button
+        className={styles.btn}
+        onClick={() =>
+          navigator.clipboard.writeText(
+            `${window.location.href}/invitation/${event?.id}`
+          )
+        }
+      >
+        {' '}
+        <span>
+          <FontAwesomeIcon
+            icon={faClipboard}
+            className="bg-transparent text-white"
+          />
+        </span>
+        copy invitation link
+      </Button>
       <Button className={styles.btn} onClick={handleEditEvent}>
         {' '}
         <span>
